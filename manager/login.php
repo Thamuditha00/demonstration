@@ -17,6 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errMsg = $auth->checkCredentials($username,$password);
     if($errMsg == '') {
         $_SESSION['username'] = $username;
+        $_SESSION['userType'] = 'manager';
         if (isset($_SESSION['returnUrl'])) {
             header("Location: ${_SESSION['returnUrl']}");
         }

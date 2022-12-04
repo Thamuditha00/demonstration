@@ -7,6 +7,11 @@ $db = "interim";
 $conn = mysqli_connect($server, $user, $pass, $db) or die("Error connecting to database");
 ?>
 <?php
+
+if($_SESSION['userType'] != 'donee') {
+    header('Location: login.php');
+    exit();
+}
 // import only subcategory column from subcategory database for php
 
 $query = "SELECT * FROM subcategory";

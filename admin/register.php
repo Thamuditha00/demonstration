@@ -1,10 +1,15 @@
 <?php
+session_start();
 $host="localhost";
 $username="root";
 $password="";
 $db="admin";
 
 $con=mysqli_connect($host,$username,$password,$db);
+
+if(!isset($_SESSION['username']) && $_SESSION['userType'] != 'admin'){
+  header("location:login.php");
+}
 
 // mysqli_connect($host,$username,$password);
 // mysqli_select_db($db);

@@ -1,4 +1,9 @@
-
+<?php
+  session_start();
+  if(!isset($_SESSION['username']) && $_SESSION['userType'] != 'admin') {
+    header("Location: ./login.php");
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -9,6 +9,11 @@ $conn = mysqli_connect($server, $user, $pass, $db) or die("Error connecting to d
 
 <?php
 
+if($_SESSION['userType'] != 'donee') {
+    header('Location: login.php');
+    exit();
+}
+
 //select all from requests table
 $query = "SELECT * FROM requests";
 $result = mysqli_query($conn, $query) or die("Error querying database");

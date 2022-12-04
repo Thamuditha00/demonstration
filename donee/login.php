@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -43,6 +47,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $result = mysqli_query($conn, $query) or die("Error querying database");
 
     if (mysqli_num_rows($result) == 1) {
+        $_SESSION['userType'] = 'donee';
         header('Location: index.php');
         exit();
     } else {

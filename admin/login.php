@@ -25,6 +25,8 @@ if(isset($_POST['username'])){
 
 
   if(mysqli_num_rows($result)==1){
+    $_SESSION['username']=$username;
+    $_SESSION['userType'] = 'admin';
     echo " succefully logged";
     exit();
   }

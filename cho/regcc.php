@@ -1,6 +1,11 @@
 <?php
 include 'config.php';
 
+if($_SESSION['userType'] != 'cho' && !isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
+
 if(isset($_POST['submit'])){
   $address= $_POST['address'];
   $area= $_POST['area'];
