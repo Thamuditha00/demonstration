@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+    font-family: "Inter", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /* take remaining width */
+    justify-content: flex-start;
+    background-color: #cfcfcf;
+    position: absolute;
+    left: 400px;
+    width: calc(100% - 400px);
+    top: 0;
+}
+
+/* .heading is in the left side, .maincta is in the right side */
+.main-part {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* .profile has .profile-box at the right corner */
+.profile {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    gap: 10px;
+    height: 60px;
+}
+
+/* make .profile-notifications, .profile-name, profile-pic  be in a line inside .profile-box*/
+.profile-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 12px;
+    background-color: #fff;
+    height: 60px;
+    padding: 0 20px;
+    font-size: 20px;
+}
+
+.notification-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: #fff;
+    height: 60px;
+    width: 60px;
+}
+
+.notification-box i {
+    font-size: 24px;
+}
+
+.profile img {
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* .header-cta has .maincta at right corner and .heading at left corner*/
+.header-cta {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 100px;
+}
+
+/* .maincta-btn is in the right corner of the div  */
+.maincta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* a green button with padding 20px */
+    background-color: #00b300;
+    color: #fff;
+    padding: 18px 20px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* button hover is turning black and button showing another icon */
+.maincta-btn:hover {
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* .search-block has .search on right corner */
+.search-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: fle;
+    width: 90%;
+    height: 60px;
+    padding-bottom: 10px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    color: #9b9b9b;
+}
+
+.search input {
+    padding-left: 60px;
+    height: 60px;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    font-size: 18px;
+}
+
+.search .bx-search {
+    position: absolute;
+    z-index: 99;
+    margin-left: 20px;
+
+    font-size: 32px;
+}
