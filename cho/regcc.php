@@ -3,25 +3,23 @@ include 'config.php';
 
 if($_SESSION['userType'] != 'cho' && !isset($_SESSION['username'])) {
     header('Location: login.php');
-    exit();
 }
 
-if(isset($_POST['submit'])){
-  $address= $_POST['address'];
-  $area= $_POST['area'];
-  $contactnum= $_POST['contactNumber'];
-  $email= $_POST['email'];
+if (isset($_POST['submit'])) {
+  $address = $_POST['address'];
+  $area = $_POST['area'];
+  $contactnum = $_POST['contactNumber'];
+  $email = $_POST['email'];
   $fax = $_POST['fax'];
+  $cho = $_SESSION['username'];
 
-  $sql="INSERT INTO cc(address,area,contactNumber,email,faxNumber) VALUES ('address','area','contactNumber','email','fax')";
-  $result=mysqli_query($conn,$sql);
-
-  if($result){
-    echo "<script>alert('Community Center added succefully')</script>";
-  }
-  else{
+  try {
+    $sql = "INSERT INTO cc(address,area,contactNumber,email,faxNumber,cho) VALUES ('$address','$area','$contactnum','$email','$fax','$cho')";
+    $result = mysqli_query($conn, $sql);
+  } catch (Exception $e) {
     echo "<script>alert('Something went wrong')</script>";
   }
+
 }
 ?>
   

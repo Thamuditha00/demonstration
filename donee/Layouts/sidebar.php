@@ -34,7 +34,7 @@
           </li>
         </ul>
         <div class="logout">
-          <a href="login.php" class="nav_link">
+          <a href="logout.php" class="nav_link">
             <i class='bx bx-log-out'></i>
             <span class="nav_name">Logout</span>
           </a>

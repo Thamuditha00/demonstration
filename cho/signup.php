@@ -1,41 +1,20 @@
 <?php 
 include 'config.php';
 error_reporting(0);
-session_start();
 
-if (isset($_SESSION['username'])) {
-    header("Location: login.php");
-}
-
-if (isset($_POST['submit'])) {
+if (isset($_POST['register'])) {
+	$id = uniqid('cho', true);
 	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
-	$cpassword = md5($_POST['cpassword']);
+	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-	if ($password == $cpassword) {
-		$sql = "SELECT * FROM users WHERE email='$email'";
-		$result = mysqli_query($conn, $sql);
-		if (!$result->num_rows > 0) {
-			$sql = "INSERT INTO users (username, email, password)
-					VALUES ('$username', '$email', '$password')";
-			$result = mysqli_query($conn, $sql);
 
-			if ($result) {
-				echo "<script>alert('User Registration Completed.')</script>";
-				$username = "";
-				$email = "";
-				$_POST['password'] = "";
-				$_POST['cpassword'] = "";
-			} else {
-				echo "<script>alert('Something Wrong Went.')</script>";
-			}
-		} else {
-			echo "<script>alert('Email Already Exists.')</script>";
+	try {
+		$sql = "INSERT INTO users (id, username, password) VALUES ('$id', '$username', '$password')";
+		if($conn->query($sql) === TRUE) {
+			header("Location: login.php");
 		}
-		
-	} else {
-		echo "<script>alert('Password Not Matched.')</script>";
+	} catch(PDOException $e) {
+		echo "Error: " . $e->getMessage();
 	}
 }
 ?>
@@ -53,10 +32,8 @@ if (isset($_POST['submit'])) {
 		<form action="" method="POST" class="form">
         <p class="login-text" style="font-size: 2rem; font-weight: 800;">Sign up</p>
 				<input type="text" placeholder="Username" name="username"required>
-				<input type="email" placeholder="Email" name="email"required>
 				<input type="password" placeholder="Password" name="password" required>
-				<input type="password" placeholder="Confirm Password" name="cpassword" required>
-				<button name="submit" class="button">Signup</button>
+				<button name="register" class="button">Signup</button>
 			<p class="login-register-text">Have an account? <a href="index.php">Login Here</a></p>
 		</form>
 	</div>

@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         include_once ("../../config/authController.php");
         $auth = new authController();
         $auth->logout();
-        header("location: ../../login.php");
+        header("location: ../../../");
     }
 
     $returnMsg = $eventModel->createEvent($_POST);

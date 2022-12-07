@@ -4,7 +4,7 @@ class eventModel {
 
         private $conn;
         private $serverName = "localhost";
-        private $dbname ="test";
+        private $dbname ="interim";
         private $userName;
         private $password;
 

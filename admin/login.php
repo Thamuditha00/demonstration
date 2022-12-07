@@ -1,8 +1,9 @@
 <?php
+session_start();
 $host="localhost";
 $username="root";
 $password="";
-$db="admin";
+$db="interim";
 
 $con=mysqli_connect($host,$username,$password,$db);
 
@@ -13,22 +14,25 @@ if (mysqli_connect_errno()) {
   exit;
 }
 
-if(isset($_POST['username'])){
+if(isset($_POST['login'])){
 
   $username=$_POST['username'];
   $password=$_POST['password'];
 
-  $sql="select * from login  where username='".$username."' AND password='".$password."'limit 1";
+  try {
+    $sql="select * from users  where username='$username'";
+  } catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+  }
+  
 
   $result=mysqli_query($con,$sql);
+  $arr = $result->fetch_array();
 
-
-
-  if(mysqli_num_rows($result)==1){
+  if(password_verify($password,$arr['password']) && str_contains($arr['username'], 'admin')){
     $_SESSION['username']=$username;
     $_SESSION['userType'] = 'admin';
-    echo " succefully logged";
-    exit();
+    header("Location: cho.php");
   }
   else{
     echo "incorrect password";
@@ -36,8 +40,6 @@ if(isset($_POST['username'])){
 
 
 }
-
-
 
 ?>
 
@@ -50,7 +52,7 @@ if(isset($_POST['username'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form in Design</title>
+  <title>Admin Login</title>
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -61,7 +63,7 @@ if(isset($_POST['username'])){
     <div class="title">
     <h1>Admin Login Form</h1>
     </div>
-    <form method="POST" action="cho.php">
+    <form method="POST" action="">
       <div class="form-input">
         <label for="username"><b>Username:</b></label>
         <input type="text" name="username" placeholder=" Enter username"/>
@@ -73,8 +75,10 @@ if(isset($_POST['username'])){
       </div> 
       
        
-      <input type="submit" name="submit" value="LOGIN" class="btn-login"/>
+      <button type="submit" name="login" class="">Login</button>
      
+      <p><a href="register.php">Register</a></p>
+
     </form>
    </div>
   

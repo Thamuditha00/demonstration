@@ -1,8 +1,21 @@
 <?php 
-session_start();
+include 'config.php';
 if (!isset($_SESSION['username']) && $_SESSION['userType'] != 'cho') {
     header("Location: login.php");
 }
+
+
+
+  try {
+    $username = $_SESSION['username'];
+    $sql = "SELECT * FROM cc WHERE cho = '$username'";
+    $result = mysqli_query($conn, $sql);
+    $arr = $result->fetch_all(MYSQLI_ASSOC);
+  } catch (Exception $e) {
+    echo "<script>alert('Something went wrong')</script>";
+  }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -25,5 +38,11 @@ if (!isset($_SESSION['username']) && $_SESSION['userType'] != 'cho') {
         <a href="#">Complaints</a>
         <a href="logout.php"> Logout </a>
     </div>
+
+    <?php
+    echo "<pre>";
+    print_r($arr);
+    echo "</pre>";
+    ?>
 </body>
 </html>

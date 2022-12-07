@@ -23,7 +23,6 @@ p a {
 }
 
 .container {
-    box-shadow: 2px 2px 15px black;
     padding: 1rem;
     border-radius: 0.5rem;
 }
@@ -40,7 +39,7 @@ p a {
 
 .loginDiv>form>div {
     height: auto;
-    padding: 3px;
+    padding: 8px;
     margin: auto;
 }
 
