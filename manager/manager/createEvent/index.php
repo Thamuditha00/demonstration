@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("location: ../../../");
     }
 
-    $returnMsg = $eventModel->createEvent($_POST);
+    $returnMsg = $eventModel->createEvent($_POST,$_SESSION['username']);
 
 
 }
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="dashboardLinks">
             <ul>
                 <li><a href="#">Requests</a></li>
-                <li><a events href="#">Events</a></li>
+                <li><a events href="../">Events</a></li>
                 <li><a href="#">Donations</a></li>
                 <li><a href="#">Donees</a></li>
                 <li><a href="#">Donors</a></li>

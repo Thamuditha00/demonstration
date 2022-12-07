@@ -91,7 +91,7 @@ $eventModel = new eventModel("root","");
             <div class="mainDown">
 
                 <?php
-                 $eventModel->displayEvents();
+                 $eventModel->displayEvents($_SESSION['username']);
                 ?>
 
             </div>

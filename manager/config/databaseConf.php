@@ -40,14 +40,14 @@ class eventModel {
             return $eventCategoryReceiveStatement->fetchAll();
         }
 
-        public function createEvent($data) {
+        public function createEvent($data,$username) {
             if(!$this->validate($data)) {
                 return "validation failed";
             }
 
             try {
                 $eventId = uniqid("event",true);
-                $eventCreateStatement = $this->conn->prepare("INSERT INTO event (eventID, category, theme, contact, date, time, location, description) VALUES (:eventID, :category, :theme, :contact, :date, :time, :location, :description)");
+                $eventCreateStatement = $this->conn->prepare("INSERT INTO event (eventID, category, theme, contact, date, time, location, description,manager) VALUES (:eventID, :category, :theme, :contact, :date, :time, :location, :description,:manager)");
                 $eventCreateStatement->bindParam(':eventID', $eventId);
                 $eventCreateStatement->bindParam(':category', $data['eventCategory']);
                 $eventCreateStatement->bindParam(':theme', $data['eventTheme']);
@@ -56,6 +56,7 @@ class eventModel {
                 $eventCreateStatement->bindParam(':time', $data['eventTime']);
                 $eventCreateStatement->bindParam(':location', $data['eventLocation']);
                 $eventCreateStatement->bindParam(':description', $data['eventDescription']);
+                $eventCreateStatement->bindParam(':manager', $username);
                 $eventCreateStatement->execute();
                 return "Created Successfully!!";
             } catch(PDOException $e) {
@@ -71,8 +72,8 @@ class eventModel {
             return true;
         }
 
-        public function displayEvents() {
-            $events = $this->getEvents();
+        public function displayEvents($username) {
+            $events = $this->getEvents($username);
             $eventCategoryIcons = $this->getEventCategoryIcons();
             foreach($events as $event) {
                 echo "<div class='eventCard'>";
@@ -102,8 +103,9 @@ class eventModel {
             }
         }
 
-        public function getEvents() {
-            $eventReceiveStatement = $this->conn->prepare("SELECT * FROM event");
+        public function getEvents($username) {
+            $eventReceiveStatement = $this->conn->prepare("SELECT * FROM event WHERE manager = :username");
+            $eventReceiveStatement->bindParam(':username', $username);
             $eventReceiveStatement->execute();
             $eventReceiveStatement->setFetchMode(PDO::FETCH_ASSOC);
             return $eventReceiveStatement->fetchAll();

@@ -24,7 +24,7 @@ public function __construct()
 
 public function checkCredentials($usrname, $pass) {
     try {
-        $stmt = $this->conn->prepare("SELECT * FROM manager WHERE username = :username");
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
         $stmt->bindParam(':username', $usrname);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
