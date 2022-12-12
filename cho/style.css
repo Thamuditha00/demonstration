@@ -87,11 +87,28 @@ textarea {
     margin-top: 50px;
 }
 
-h2 {
+.main-area a {
     text-decoration: none;
     position: fixed;
-    border-radius: 5px;
-    left: 1200px;
-    top: 50px;
-    font-size: 15px;
+    border-radius: -35px;
+    display: inline-block;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+}
+
+.reg-button {
+    position: absolute;
+    top: 24px;
+    right: 100px;
+    padding: 20px;
+
+}
+
+.reg-button button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+
 }

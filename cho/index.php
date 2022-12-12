@@ -1,22 +1,9 @@
-<?php 
-include 'config.php';
-if (!isset($_SESSION['username']) && $_SESSION['userType'] != 'cho') {
-    header("Location: login.php");
-}
-
-
-
-  try {
-    $username = $_SESSION['username'];
-    $sql = "SELECT * FROM cc WHERE cho = '$username'";
-    $result = mysqli_query($conn, $sql);
-    $arr = $result->fetch_all(MYSQLI_ASSOC);
-  } catch (Exception $e) {
-    echo "<script>alert('Something went wrong')</script>";
-  }
-
-
-?>
+<?php //
+//session_start();
+//if (!isset($_SESSION['username']) && $_SESSION['userType'] != 'cho') {
+//    header("Location: login.php");
+//}
+//?>
 
 <!DOCTYPE html>
 <html>
@@ -25,24 +12,22 @@ if (!isset($_SESSION['username']) && $_SESSION['userType'] != 'cho') {
     <meta charset="utf-8">
     <title>Community Center Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    </head>
+</head>
 
 <body>
-   <h2><a href="regcc.php" style="text-decoration:none;position:fixed;border-radius: -35px; left:1200px; top:50px;font-size:15px ;display: inline-block;background-color: #4CAF50;border: none;color: white; ">Register a Community Center</a></h2>
-   <h3 style="text-align: center;margin-top: 50px;margin-left:-50px;font-size:30">Community Centers</h3>
-        
-   <div class="sidenav">
-        <img class="logo" src="logo.png">
-        <a href="#">Users</a>
-        <a href=".php">Community Center</a>
-        <a href="#">Complaints</a>
-        <a href="logout.php"> Logout </a>
-    </div>
+<div  class="reg-button">
+<a href="regcc.php"">
+    <button class="reg-cc">Register a Community Center</button>
+</a>
+</div>
+<h3 style="text-align: center;margin-top: 50px;margin-left:-50px;font-size:30">Community Centers</h3>
 
-    <?php
-    echo "<pre>";
-    print_r($arr);
-    echo "</pre>";
-    ?>
+<div class="sidenav">
+    <img class="logo" src="logo.png">
+    <a href="#">Users</a>
+    <a href=".php">Community Center</a>
+    <a href="#">Complaints</a>
+    <a href="logout.php"> Logout </a>
+</div>
 </body>
 </html>

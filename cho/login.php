@@ -1,19 +1,21 @@
 <?php 
 include 'config.php';
+session_start();
 error_reporting(0);
 
 if (isset($_SESSION['username'])) {
     header("Location: index.php");
 }
 
-if (isset($_POST['login'])) {
-	$username = $_POST['username'];
+if (isset($_POST['submit'])) {
+	$email = $_POST['email'];
+	$password = md5($_POST['password']);
 
-	$sql = "SELECT * FROM users WHERE username='$username'";
+	$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
 	$result = mysqli_query($conn, $sql);
-	$arr = $result->fetch_array();
-	if (password_verify($_POST['password'], $arr['password']) && str_contains($arr['ID'], 'cho')) {
-		$_SESSION['username'] = $username;
+	if ($result->num_rows > 0) {
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['username'] = $row['username'];
 		$_SESSION['userType'] = 'cho';
 		header("Location: index.php");
 	} else {
@@ -36,13 +38,13 @@ if (isset($_POST['login'])) {
 		<form action="" method="POST" class="form">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800; text-align:center;">Login</p>
 			<div class="input-group">
-				<input type="text" placeholder="username" name="username">
+				<input type="email" placeholder="Email" name="email">
 			</div>
 			<div class="input-group">
 				<input type="password" placeholder="Password" name="password">
 			</div>
 			<div class="input-group">
-				<button name="login" class="button">Login</button></center>
+				<button name="submit" class="button">Login</button></center>
 			</div>
 			<p class="login-register-text">Don't have an account? <a href="signup.php">Sign up here.</a></p>
 		</form>

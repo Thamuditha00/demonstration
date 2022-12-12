@@ -1,5 +1,4 @@
 <?php
-session_start();
 $server = "localhost";
 $user = "root";
 $pass = "";
@@ -9,7 +8,7 @@ $conn = mysqli_connect($server, $user, $pass, $db) or die("Error connecting to d
 ?>
 <?php
 
-if($_SESSION['userType'] != 'donee' && !isset($_SESSION['username'])) {
+if($_SESSION['userType'] != 'donee') {
     header('Location: login.php');
     exit();
 }
@@ -38,24 +37,29 @@ include 'layouts/sidebar.php';
 <?php
 
 if (isset($_POST['submit'])) {
-    $username = $_SESSION['username'];
-    $item = $_POST['subcategory'];
+    $subcategory = $_POST['subcategory'];
+    echo $subcategory;
+
     $amount = $_POST['amount'];
+    echo $amount;
+
     $unit = $_POST['unit'];
+    echo $unit;
+
     $urgency = $_POST['urgency'];
+    echo $urgency;
+
     $notes = $_POST['notes'];
+    echo $notes;
 }
 
-    $query = "INSERT INTO requests (donee,item, amount, urgency, notes) VALUES ('$username','$item', '$amount', '$urgency', '$notes')";
+    $query = "INSERT INTO requests (subcategory, amount, unit, urgency, notes) VALUES ('$subcategory', '$amount', '$unit', '$urgency', '$notes')";
     echo "Query correct". $query;
-    try {
-        if($conn->query($query) === TRUE) {
-            header('Location: index.php');
-        } else {
-            echo "An error occured";
-        }
+    $result2 = mysqli_query($conn, $query) or die("Error querying database");
 
-    } catch(Exception $e) {
-        echo  $e->getMessage();
+    if ($result2) {
+        echo "Request created successfully";
+    } else {
+        echo "Error creating request";
     }
-?>
+

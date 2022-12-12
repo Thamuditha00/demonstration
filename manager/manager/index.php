@@ -12,7 +12,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     include_once ("../config/authController.php");
     $auth = new authController();
     $auth->logout();
-    header("location: ../../");
+    header("location: ../login.php");
 }
 
 include_once ("../config/databaseConf.php");
@@ -91,7 +91,7 @@ $eventModel = new eventModel("root","");
             <div class="mainDown">
 
                 <?php
-                 $eventModel->displayEvents($_SESSION['username']);
+                 $eventModel->displayEvents();
                 ?>
 
             </div>

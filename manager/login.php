@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $auth = new authController();
     $errMsg = $auth->checkCredentials($username,$password);
-    if($errMsg === '') {
+    if($errMsg == '') {
         $_SESSION['username'] = $username;
         $_SESSION['userType'] = 'manager';
         if (isset($_SESSION['returnUrl'])) {
@@ -26,12 +26,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         $_SESSION['loginError'] = $errMsg;
-        $_SESSION['errorRemove'] = false;
         header("Location: ./login.php");
     }
 }
-
-
 
 ?>
 
@@ -52,16 +49,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     <div class="container">
-        
-        <?php
-            if(isset($_SESSION['registrationMsg'])) {
-                echo "<div><h5>".$_SESSION['registrationMsg'] ."!</h5></div>";
-                echo "<div><h5>Please login to continue</h5></div>";
-                unset($_SESSION['registrationMsg']);
-            }
-        ?>
-
-
         <div>
             <h2> Log In</h2>
         </div>
@@ -87,11 +74,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="loginError">
                     <?php
-                        if(isset($_SESSION['errorRemove'])) {
-                            echo $_SESSION['errorRemove'];
-                            unset($_SESSION['errorRemove']);
-                        }
-                        else if(isset($_SESSION['loginError'])) {
+                        if(isset($_SESSION['loginError'])) {
                             echo $_SESSION['loginError'];
                             unset($_SESSION['loginError']);
                         }
@@ -103,7 +86,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div>
-            <p>Doesn't have an account? <a href="register.php">Sign up</a></p>
+            <p>Doesn't have an account? <a href="#">Sign up</a></p>
         </div>
 
     </div>

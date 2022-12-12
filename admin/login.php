@@ -1,9 +1,8 @@
 <?php
-session_start();
 $host="localhost";
 $username="root";
 $password="";
-$db="interim";
+$db="admin";
 
 $con=mysqli_connect($host,$username,$password,$db);
 
@@ -14,25 +13,22 @@ if (mysqli_connect_errno()) {
   exit;
 }
 
-if(isset($_POST['login'])){
+if(isset($_POST['username'])){
 
   $username=$_POST['username'];
   $password=$_POST['password'];
 
-  try {
-    $sql="select * from users  where username='$username'";
-  } catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
-  }
-  
+  $sql="select * from login  where username='".$username."' AND password='".$password."'limit 1";
 
   $result=mysqli_query($con,$sql);
-  $arr = $result->fetch_array();
 
-  if(password_verify($password,$arr['password']) && str_contains($arr['username'], 'admin')){
+
+
+  if(mysqli_num_rows($result)==1){
     $_SESSION['username']=$username;
     $_SESSION['userType'] = 'admin';
-    header("Location: cho.php");
+    echo " succefully logged";
+    exit();
   }
   else{
     echo "incorrect password";
@@ -40,6 +36,8 @@ if(isset($_POST['login'])){
 
 
 }
+
+
 
 ?>
 
@@ -52,7 +50,7 @@ if(isset($_POST['login'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login</title>
+  <title>Form in Design</title>
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -63,7 +61,7 @@ if(isset($_POST['login'])){
     <div class="title">
     <h1>Admin Login Form</h1>
     </div>
-    <form method="POST" action="">
+    <form method="POST" action="cho.php">
       <div class="form-input">
         <label for="username"><b>Username:</b></label>
         <input type="text" name="username" placeholder=" Enter username"/>
@@ -75,10 +73,8 @@ if(isset($_POST['login'])){
       </div> 
       
        
-      <button type="submit" name="login" class="">Login</button>
+      <input type="submit" name="submit" value="LOGIN" class="btn-login"/>
      
-      <p><a href="register.php">Register</a></p>
-
     </form>
    </div>
   

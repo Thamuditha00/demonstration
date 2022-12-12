@@ -36,10 +36,9 @@ body {
 
 .formStyle {
     padding: 20px;
-    width: 400px;
     margin: 50px auto;
     text-align: center;
-    position: right;
+    justify-content: left;
 }
 
 .formStyle input,

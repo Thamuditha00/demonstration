@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $server = "localhost";
 $user = "root";
 $pass = "";
@@ -17,7 +15,7 @@ if($_SESSION['userType'] != 'donee') {
 }
 
 //select all from requests table
-$query = "SELECT * FROM requests WHERE donee = '" . $_SESSION['username'] . "'";
+$query = "SELECT * FROM requests";
 $result = mysqli_query($conn, $query) or die("Error querying database");
 
 ?>
@@ -86,11 +84,7 @@ $result = mysqli_query($conn, $query) or die("Error querying database");
 
       while ($row = mysqli_fetch_array($result)) {
         include 'components/card.php';
-      }
-
-      echo "<pre>";
-      print_r($row);
-      echo "</pre>";
+      }  
       ?>
 
     </div>

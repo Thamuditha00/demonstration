@@ -3,11 +3,6 @@
   if(!isset($_SESSION['username']) && $_SESSION['userType'] != 'admin') {
     header("Location: ./login.php");
   }
-
-  if(isset($_POST['logout'])){
-  session_destroy();
-  header("location:../");
-}
 ?>
 
 <!DOCTYPE html>
@@ -39,16 +34,13 @@
 
       </ul>
       
-      <form action="" method="POST">
-        <button class="logout" type="submit" name="logout">Logout</button>
-      </form>
 
     </div>
     
     <div class="main-area">
       <div class="main-upper">
         <h1>notification icon</h1>
-        <form action="registercho.php" method="POST">
+        <form action="register.php" method="POST">
           <div class="btn">
         <button class=" button button1">Register CHO</button>
 
@@ -89,7 +81,7 @@
       $host="localhost";
       $username="root";
       $password="";
-      $db="interim";
+      $db="admin";
 
       $con=mysqli_connect($host,$username,$password,$db);
       if (mysqli_connect_errno()) {

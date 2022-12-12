@@ -4,7 +4,7 @@ class authController
 {
 private $conn;
 private $serverName = "localhost";
-private $dbname ="interim";
+private $dbname ="test";
 private $userName = "root";
 private $password = "";
 
@@ -24,15 +24,11 @@ public function __construct()
 
 public function checkCredentials($usrname, $pass) {
     try {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt = $this->conn->prepare("SELECT * FROM manager WHERE username = :username");
         $stmt->bindParam(':username', $usrname);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $result = $stmt->fetchAll();
-
-        if(!str_contains($result[0]['ID'], 'manager')) {
-            return "username does not exists";
-        }
 
         if(empty($result)) {
             return "username do not exists";
@@ -51,23 +47,13 @@ public function logOut() {
     session_start();
     session_unset();
     session_destroy();
+    header('Location: http://localhost/demostration/');
 
 }
 
-public function register($POST) {
-    try {
-        $id = uniqid('manager', true);
-        $pass = password_hash($POST['password'], PASSWORD_DEFAULT);
-        $username = $POST['username'];
-        $stmt = $this->conn->prepare("INSERT INTO users (ID, username, password) VALUES (:id,:username, :password)");
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $pass);
-        $stmt->execute();
-        return 1;
-    } catch(PDOException $e) {
-        return "Registration failed: " . $e->getMessage();
-    }
-}
+
+
+
+
 
 }

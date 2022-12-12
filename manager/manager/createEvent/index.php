@@ -19,10 +19,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         include_once ("../../config/authController.php");
         $auth = new authController();
         $auth->logout();
-        header("location: ../../../");
+        header("location: ../../login.php");
     }
 
-    $returnMsg = $eventModel->createEvent($_POST,$_SESSION['username']);
+    $returnMsg = $eventModel->createEvent($_POST);
 
 
 }
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="dashboardLinks">
             <ul>
                 <li><a href="#">Requests</a></li>
-                <li><a events href="../">Events</a></li>
+                <li><a events href="#">Events</a></li>
                 <li><a href="#">Donations</a></li>
                 <li><a href="#">Donees</a></li>
                 <li><a href="#">Donors</a></li>
