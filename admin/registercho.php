@@ -66,28 +66,25 @@ if(isset($_POST['register-cho'])){
 <body>
   
   <div class="wrapper">
-    <div class="sidebar">
-      <img class="logo" src="logo.svg"> 
-      <ul>
-        <li><a href="#">Request</a></li>
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Donations</a></li>
-        <li><a href="#">Complains</a></li>
-        <li><a href="#">Donees</a></li>
-        <li><a href="#">Donors</a></li>
-        <li><a href="#">Drivers</a></li>
-        <li><a href="#">Employees</a></li>
-        <li><a href="#">Community Centers</a></li>
-        <li><a href="#">Community Head Office</a></li>
+      <div class="sidebar">
+          <img class="logo" src="logo.svg">
+          <ul>
 
-
-      </ul>
-      
-      <form action="" method="POST">
-        <button class="logout" type="submit" name="logout">Logout</button>
-      </form>
-
-    </div>
+              <li><a href="#">Donees</a></li>
+              <li><a href="#">Donors</a></li>
+              <li><a href="#">Drivers</a></li>
+              <li><a href="#">Employees</a></li>
+              <li><a href="#">Community Centers</a></li>
+              <li class="active"><a href="cho.php">Community Head Offices</a></li>
+              <li><a href="#">Request</a></li>
+              <li><a href="#">Events</a></li>
+              <li><a href="#">Donations</a></li>
+              <li><a href="#">Complains</a></li>
+          </ul>
+          <form action="" method="POST">
+              <button class="logout" type="submit" name="logout">Logout</button>
+          </form>
+      </div>
     
     <div class="main-area">
       <div class="main-upper">

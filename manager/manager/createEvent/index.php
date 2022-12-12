@@ -1,28 +1,28 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['username']) &&$_SESSION['userType'] != 'manager') {
+if (!isset($_SESSION['username']) && $_SESSION['userType'] != 'manager') {
     $_SESSION['loginError'] = "Please login first";
     $_SESSION['returnUrl'] = $_SERVER['REQUEST_URI'];
     header("Location: ../../login.php");
 }
 
-include_once ("../../config/databaseConf.php");
+include_once("../../config/databaseConf.php");
 
-$eventModel = new eventModel("root","");
+$eventModel = new eventModel("root", "");
 $names = $eventModel->getEventCategoryNames();
 $returnMsg = '';
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if( isset($_POST['logout']) ) {
-        include_once ("../../config/authController.php");
+    if (isset($_POST['logout'])) {
+        include_once("../../config/authController.php");
         $auth = new authController();
         $auth->logout();
-        header("location: ../../login.php");
+        header("location: ../../../");
     }
 
-    $returnMsg = $eventModel->createEvent($_POST);
+    $returnMsg = $eventModel->createEvent($_POST, $_SESSION['username']);
 
 
 }
@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./../styles.css">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="create_event_styles.css">
     <title>Create Event</title>
 </head>
 
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="dashboardLinks">
             <ul>
                 <li><a href="#">Requests</a></li>
-                <li><a events href="#">Events</a></li>
+                <li><a events href="../">Events</a></li>
                 <li><a href="#">Donations</a></li>
                 <li><a href="#">Donees</a></li>
                 <li><a href="#">Donors</a></li>
@@ -87,7 +87,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div>
             <?php
-            if($returnMsg != '') {
+            if ($returnMsg != '') {
                 echo "<h2> $returnMsg </h2>";
             }
             ?>
@@ -95,95 +95,40 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div class="mainDown">
-
-
-
-            <form action="" method="post">
-
-                <div class="formDiv">
-
-                    <div>
-                        <div class="formLabel">
-                            <label for="eventCategory">Event Category : </label>
-                        </div>
-                        <div class="formField">
-                            <select name="eventCategory" id="eventCategory" class="formSelect" >
-                                <option value=''>               select              </option>
-                                <?php
-                                foreach($names as $key => $value){
-                                    echo "<option value='$key'>$value</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="formLabel">
-                            <label for="eventTheme">Event Name : </label>
-                        </div>
-                        <div class="formField">
-                            <input type="text" name="eventTheme" id="eventTheme" size="40">
-                        </div>
-
-                    </div>
-
-                    <div>
-                        <div class="formLabel">
-                            <label for="eventContact">Add a contact No : </label>
-                        </div>
-                        <div class="formField">
-                            <input type="text" name="eventContact" id="eventContact" size="40">
-                        </div>
-
-                    </div>
-
-                    <div>
-                        <div class="formCol">
-                            <div class="formLabel">
-                                <label for="eventDate">On : </label>
-                            </div>
-                            <div class="formField">
-                                <input type="date" name="eventDate" id="eventDate" size="40">
-                            </div>
-                        </div>
-
-                        <div class="formCol">
-                            <div class="formLabel">
-                                <label for="eventTime">At : </label>
-                            </div>
-                            <div class="formField">
-                                <input type="time" name="eventTime" id="eventTime" size="40">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="formLabel">
-                            <label for="eventLocation">Location : </label>
-                        </div>
-                        <div class="formField">
-                            <input type="text" name="eventLocation" id="eventLocation" size="40">
-                        </div>
-
-                    </div>
-
-                    <div class="formText">
-                        <div class="formLabel">
-                            <label for="eventDescription">Description : </label>
-                        </div>
-                        <div class="formField">
-                            <textarea name="eventDescription" id="eventDescription" cols="40" rows="10" class="formTextarea"></textarea>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button type="submit" name="createEvent">Confirm</button>
-                    </div>
+            <div class="formDiv">
+                <form action="" method="post">
+                    <div class="form-block">
+                    <label for="eventCategory">Event Category : </label>
+                    <select name="eventCategory" id="eventCategory" class="formSelect">
+                        <option value=''> select</option>
+                        <?php
+                        foreach ($names as $key => $value) {
+                            echo "<option value='$key'>$value</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
 
+                    <label for="eventTheme">Event Name : </label>
+                    <input type="text" name="eventTheme" id="eventTheme" size="40">
+                    <label for="eventContact">Add a contact No : </label>
+                    <input type="text" name="eventContact" id="eventContact" size="40">
+                    <div class="form-block">
+                    <label for="eventDate">On : </label>
+                    <input type="date" name="eventDate" id="eventDate" size="40"></div>
+                    <div class="form-block"><label for="eventTime">At : </label>
+                        <input type="time" name="eventTime" id="eventTime" size="40"></div>
+                    <label for="eventLocation">Location : </label>
+                    <input type="text" name="eventLocation" id="eventLocation" size="40">
+                    <label for="eventDescription">Description : </label>
+                    <textarea name="eventDescription" id="eventDescription" cols="40" rows="10"
+                              class="formTextarea"></textarea>
+                    <div class="form-block">
+                    <button type="submit" name="createEvent">Confirm</button>
+                    </div>
 
-            </form>
+                </form>
+            </div>
 
 
         </div>

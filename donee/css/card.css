@@ -1,78 +1,62 @@
-/* make .content-container align in the center of the .content-box */
+
 .content-box {
-    display: flex;
-    /* align-items: right; */
-    justify-content: space-between;
     width: 90%;
     height: 100%;
     overflow-y: auto;
     margin-bottom: 10px;
-    flex-wrap: wrap;
 }
 
-/* make content-card a white square with shadow in the middle of the screen */
 .content-card {
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    width: 960px;
-    height: 150px;
+    width: 100%;
+    height: 30%;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     position: relative;
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
-/* set the rq-subcategory to bold and 24px */
 .rq-subcategory {
-    font-weight: 600;
-    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-weight: 900;
+    font-size: 32px;
 }
 
-/* set rq-date to the right corner of the content-card */
 .rq-date {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-/* set rq-status right under rq-subcategory as a small dim text */
 .rq-status {
     font-size: 14px;
     color: #9b9b9b;
-    margin-top: 10px;
+    position: absolute;
+    top: 60px;
+    left: 20px;
 }
 
-/* set button hover to black */
-.rq-view:hover {
-    background-color: black;
-    width: px;
-}
-
-/* set rq-category in the left bottom corner bottom aligned to rq-button */
-/* .rq-category {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-} */
-
-/* make the div .rq-button be in the bottom right corner of the content-card */
-.rq-button {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
+.rq-urgency
+{
+    font-size: 20px;
+    color: #9b9b9b;
+    position: absolute;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
 }
 
-
 .rq-button {
-
     display: flex;
     justify-content: flex-end;
-    align-items: baseline;
-    flex-direction: row;
     gap: 10px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
 }
 
 .rq-button button
@@ -81,6 +65,16 @@
     color: white;
     border: 0;
     border-radius: 5px;
-    padding: 10px 15px;
+    padding: 15px 20px;
     cursor: pointer;
+}
+
+.rq-button #delete
+{
+    background-color: #ff4d4d;
+}
+
+.rq-button #view:hover, #delete:hover
+{
+    background-color: #000;
 }

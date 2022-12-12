@@ -34,6 +34,7 @@ a {
     left: 400px;
     width: calc(100% - 400px);
     top: 0;
+    overflow-y: scroll;
 }
 
 /* .heading is in the left side, .maincta is in the right side */

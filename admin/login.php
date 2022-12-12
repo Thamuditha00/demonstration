@@ -1,82 +1,81 @@
 <?php
-$host="localhost";
-$username="root";
-$password="";
-$db="admin";
+session_start();
+$host = "localhost";
+$username = "root";
+$password = "";
+$db = "interim";
 
-$con=mysqli_connect($host,$username,$password,$db);
+$con = mysqli_connect($host, $username, $password, $db);
 
 // mysqli_connect($host,$username,$password);
 // mysqli_select_db($db);
 if (mysqli_connect_errno()) {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  exit;
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit;
 }
 
-if(isset($_POST['username'])){
+if (isset($_POST['login'])) {
 
-  $username=$_POST['username'];
-  $password=$_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-  $sql="select * from login  where username='".$username."' AND password='".$password."'limit 1";
+    try {
+        $sql = "select * from users  where username='$username'";
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
 
-  $result=mysqli_query($con,$sql);
 
+    $result = mysqli_query($con, $sql);
+    $arr = $result->fetch_array();
 
-
-  if(mysqli_num_rows($result)==1){
-    $_SESSION['username']=$username;
-    $_SESSION['userType'] = 'admin';
-    echo " succefully logged";
-    exit();
-  }
-  else{
-    echo "incorrect password";
-  }
+    if (password_verify($password, $arr['password']) && str_contains($arr['username'], 'admin')) {
+        $_SESSION['username'] = $username;
+        $_SESSION['userType'] = 'admin';
+        header("Location: cho.php");
+    } else {
+        echo "incorrect password";
+    }
 
 
 }
-
-
 
 ?>
-
-
 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form in Design</title>
-  <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
 
-  
-   <div class="container">
+<div class="container">
     <div class="title">
-    <h1>Admin Login Form</h1>
+        <h1>Admin Login Form</h1>
     </div>
-    <form method="POST" action="cho.php">
-      <div class="form-input">
-        <label for="username"><b>Username:</b></label>
-        <input type="text" name="username" placeholder=" Enter username"/>
-      </div>
-      <br><br>
-      <div class="form-input">
-        <label for="password"><b>Password:</b></label>
-        <input type="password" name="password" placeholder=" Enter password"/>
-      </div> 
-      
-       
-      <input type="submit" name="submit" value="LOGIN" class="btn-login"/>
-     
+    <form method="POST" action="">
+        <div class="form-input">
+            <label for="username"><b>Username:</b></label>
+            <input type="text" name="username" placeholder=" Enter username"/>
+        </div>
+        <div class="form-input">
+            <label for="password"><b>Password:</b></label>
+            <input type="password" name="password" placeholder=" Enter password"/>
+        </div>
+
+
+        <button type="submit" name="login" class="btn-login">Login</button>
+
+        <p><a href="register.php">Register</a></p>
+
     </form>
-   </div>
-  
+</div>
+
 </body>
 </html>

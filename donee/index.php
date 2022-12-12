@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $server = "localhost";
 $user = "root";
 $pass = "";
@@ -15,7 +17,7 @@ if($_SESSION['userType'] != 'donee') {
 }
 
 //select all from requests table
-$query = "SELECT * FROM requests";
+$query = "SELECT * FROM requests WHERE donee = '" . $_SESSION['username'] . "'";
 $result = mysqli_query($conn, $query) or die("Error querying database");
 
 ?>
@@ -63,28 +65,22 @@ $result = mysqli_query($conn, $query) or die("Error querying database");
     <!-- button named create a request -->
     <div class="header-cta">
       <h1 class="heading">My Requests</h1>
-<a href="create-req.php">
+    <a href="create-req.php">
     <button class="maincta-btn">Create A Request</button></a>
     </div>
 
     <div class="search-block">
       <div class="search">
-        <!-- add search icon from box icons -->
         <i class='bx bx-search'></i>
         <input type="text" class="search-input-text" placeholder="Search" />
-
       </div>
     </div>
 
-
-
     <div class="content-box">
       <?php
-      // call the php file card.php for each loop result in database
-
       while ($row = mysqli_fetch_array($result)) {
         include 'components/card.php';
-      }  
+      }
       ?>
 
     </div>

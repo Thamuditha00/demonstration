@@ -1,101 +1,27 @@
-/* import font "inter" from google fonts */
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-/* set all fonts to inter */
+
 * {
   font-family: "Inter", sans-serif;
   padding: 0;
   margin: 0;
 }
 
-/* set font size to 16px */
 html {
   font-size: 16px;
 }
 
-/* remove stylings from a tag */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* container with row flex */
 .container {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-/* black sidebar with white text 20% of the screen */
-/*.sidebar {*/
-/*  position: fixed;*/
-/*  top: 0;*/
-/*  left: 0;*/
-/*  height: 100%;*/
-/*  width: 400px;*/
-/*  background-color: #000;*/
-/*  !* padding: 6px 14px; *!*/
-/*  justify-content: center;*/
-/*}*/
-
-/*/* remove list numbering from lists */*/
-/*.sidebar ul {*/
-/*  margin-top: 20px;*/
-/*}*/
-
-/*.sidebar ul li,*/
-/*.logout {*/
-/*  !* position: relative; *!*/
-/*  height: 60px;*/
-/*  width: 100%;*/
-/*  list-style-type: none;*/
-/*  margin-left: 20px;*/
-/*}*/
-
-/*.sidebar ul li a,*/
-/*.logout a {*/
-/*  color: #fff;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  gap: 20px;*/
-/*  font-size: 24px;*/
-/*  border-radius: 12px;*/
-/*  transition: all 0.4s ease;*/
-/*  width: 80%;*/
-/*  height: 100%;*/
-/*  padding-left: 20px;*/
-/*}*/
-
-/*.sidebar ul li a:hover {*/
-/*  color: rgb(0, 0, 0);*/
-/*  background-color: #f5f5f5;*/
-/*}*/
-
-/*.logout a:hover {*/
-/*  color: rgb(255, 255, 255);*/
-/*  background-color: red;*/
-/*}*/
-
-/*.sidebar ul li a i {*/
-/*  height: 40px;*/
-/*  line-height: 40px;*/
-/*  font-size: 24px;*/
-/*}*/
-
-/*.logo {*/
-/*  padding: 20 0;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.logout {*/
-/*  color: rgb(177, 0, 0);*/
-/*  position: absolute;*/
-/*  bottom: 50px;*/
-/*}*/
-
-/* .main-part flex column   */
 .main {
   display: flex;
   flex-direction: column;
@@ -111,7 +37,6 @@ a {
   top: 0;
 }
 
-/* .heading is in the left side, .maincta is in the right side */
 .main-part {
   display: flex;
   flex-direction: row;
@@ -120,7 +45,6 @@ a {
   height: 100%;
 }
 
-/* .profile has .profile-box at the right corner */
 .profile {
   margin-top: 10px;
   display: flex;
@@ -130,7 +54,6 @@ a {
   height: 60px;
 }
 
-/* make .profile-notifications, .profile-name, profile-pic  be in a line inside .profile-box*/
 .profile-box {
   display: flex;
   align-items: center;
@@ -163,7 +86,6 @@ a {
   margin-right: 10px;
 }
 
-/* .header-cta has .maincta at right corner and .heading at left corner*/
 .header-cta {
   margin-top: 10px;
   display: flex;
@@ -174,7 +96,6 @@ a {
   height: 100px;
 }
 
-/* .maincta-btn is in the right corner of the div  */
 .maincta-btn {
   display: flex;
   align-items: center;
@@ -190,7 +111,6 @@ a {
   cursor: pointer;
 }
 
-/* button hover is turning black and button showing another icon */
 .maincta-btn:hover {
   background-color: #000;
   color: #fff;
@@ -199,7 +119,6 @@ a {
   cursor: pointer;
 }
 
-/* .search-block has .search on right corner */
 .search-block {
   display: flex;
   flex-direction: row;
@@ -285,8 +204,8 @@ a {
   width: px;
 }
 
-/* set rq-category in the left bottom corner bottom aligned to rq-button */
-/* .rq-category {
+/* set rq-urgency in the left bottom corner bottom aligned to rq-button */
+/* .rq-urgency {
   position: absolute;
   bottom: 20px;
   left: 20px;

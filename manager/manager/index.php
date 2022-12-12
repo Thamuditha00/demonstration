@@ -12,7 +12,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     include_once ("../config/authController.php");
     $auth = new authController();
     $auth->logout();
-    header("location: ../login.php");
+    header("location: ../../");
 }
 
 include_once ("../config/databaseConf.php");
@@ -56,7 +56,6 @@ $eventModel = new eventModel("root","");
 
             <div class="accountLinks">
                 <ul>
-                    <li><a href="#">Account</a></li>
                     <form action="" method="post">
                         <input type="submit" name="logout" value="Log Out">
                     </form>
@@ -91,7 +90,7 @@ $eventModel = new eventModel("root","");
             <div class="mainDown">
 
                 <?php
-                 $eventModel->displayEvents();
+                 $eventModel->displayEvents($_SESSION['username']);
                 ?>
 
             </div>

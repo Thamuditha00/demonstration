@@ -1,10 +1,9 @@
 <?php
 include 'config.php';
-//
-//if($_SESSION['userType'] != 'cho' && !isset($_SESSION['username'])) {
-//    header('Location: login.php');
-//    exit();
-//}
+
+if ($_SESSION['userType'] != 'cho' && !isset($_SESSION['username'])) {
+    header('Location: login.php');
+}
 
 if (isset($_POST['submit'])) {
     $address = $_POST['address'];
@@ -12,15 +11,15 @@ if (isset($_POST['submit'])) {
     $contactnum = $_POST['contactNumber'];
     $email = $_POST['email'];
     $fax = $_POST['fax'];
+    $cho = $_SESSION['username'];
 
-    $sql = "INSERT INTO cc(address,area,contactNumber,email,faxNumber) VALUES ('address','area','contactNumber','email','fax')";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-        echo "<script>alert('Community Center added succefully')</script>";
-    } else {
+    try {
+        $sql = "INSERT INTO cc(address,area,contactNumber,email,faxNumber,cho) VALUES ('$address','$area','$contactnum','$email','$fax','$cho')";
+        $result = mysqli_query($conn, $sql);
+    } catch (Exception $e) {
         echo "<script>alert('Something went wrong')</script>";
     }
+
 }
 ?>
 
@@ -33,34 +32,32 @@ html>
 </head>
 
 <body>
+<div class="container">
 
-<center>
-    <h2>Add a Community Center</h2>
-</center>
-<div class="sidenav">
-    <img class="logo" src="logo.png">
-    <a href="#"> Users </a>
-    <a href="index.php"> Community Center </a>
-    <a href="#">Complaints</a>
-    <a href="logout.php"> Logout </a>
-</div>
+    <div class="sidenav">
+        <img class="logo" src="logo.png">
+        <a href="#"> Users </a>
+        <a href="index.php" class="active"> Community Center </a>
+        <a href="#">Complaints</a>
+        <a href="logout.php"> Logout </a>
+    </div>
+    <div class="main-area">
+        <h2>Add a Community Center</h2>
+        <form method="POST" action="" class="formStyle">
 
-<div class="formStyle">
-
-    <form method="POST">
-
-        <p>Address</p>
-        <input type="text" placeholder="Address" name="address"/>
-        <p>Area</p>
-        <input type="text" placeholder="Area" name="area"/>
-        <p> Contact Number</p>
-        <input type="text" placeholder="Contact Number" name="contactNumber"/>
-        <p> Email Address</p>
-        <input type="email" placeholder="Email Address" name="email"/>
-        <p> Fax</p>
-        <input type="text" placeholder="Fax" name="fax"/>
-        <button name="submit" value="done"> Submit</button>
-    </form>
+            <p>Address</p>
+            <input type="text" placeholder="Address" name="address" required/>
+            <p>Area</p>
+            <input type="text" placeholder="Area" name="area"/>
+            <p> Contact Number</p>
+            <input type="text" placeholder="Contact Number" name="contactNumber" required/>
+            <p> Email Address</p>
+            <input type="email" placeholder="Email Address" name="email" required/>
+            <p> Fax</p>
+            <input type="text" placeholder="Fax" name="fax" required/>
+            <button name="submit" value="done"> Submit</button>
+        </form>
+    </div>
 </div>
 
 </body>
