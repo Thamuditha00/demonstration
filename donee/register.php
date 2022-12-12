@@ -15,7 +15,22 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO users (ID,username,password) VALUES ('$id','$username',$password')";
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $NIC = $_POST['NIC'];
+    $email = $_POST['email'];
+    $contactno = $_POST['contactno'];
+
+    try {
+        $query = "INSERT INTO donee (ID, fname, lname, NIC, email, contactno) VALUES ('$id','$fname','$lname','$NIC','$email','$contactno')";
+        if ($conn->query($query) === TRUE) {
+            //successfull
+        } 
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    }
+
+    $query = "INSERT INTO users (ID,username,password) VALUES ('$id','$username','$password')";
 
     try {
         if ($conn->query($query) === TRUE) {
@@ -31,6 +46,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ?>
 
 <form method="post" action="">
+    <input type="text" name="fname" placeholder="first name"> 
+    <input type="text" name="lname" placeholder="last name">
+    <input type="text" name="NIC" placeholder="NIC">  
+    <input type="text" name="email" placeholder="email">
+    <input type="text" name="contactno" placeholder="contact number">  
+
+
     <input type="text" name="username" placeholder="username"> 
     <input type="password" name="password" placeholder="password">
     <button type="submit">Register</button>

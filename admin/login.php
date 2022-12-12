@@ -72,8 +72,6 @@ if (isset($_POST['login'])) {
 
         <button type="submit" name="login" class="btn-login">Login</button>
 
-        <p><a href="register.php">Register</a></p>
-
     </form>
 </div>
 

@@ -6,6 +6,7 @@ if ($_SESSION['userType'] != 'cho' && !isset($_SESSION['username'])) {
 }
 
 if (isset($_POST['submit'])) {
+    $id = uniqid('cc', true);
     $address = $_POST['address'];
     $area = $_POST['area'];
     $contactnum = $_POST['contactNumber'];
@@ -14,11 +15,14 @@ if (isset($_POST['submit'])) {
     $cho = $_SESSION['username'];
 
     try {
-        $sql = "INSERT INTO cc(address,area,contactNumber,email,faxNumber,cho) VALUES ('$address','$area','$contactnum','$email','$fax','$cho')";
+        $sql = "INSERT INTO cc(commId,address,area,contactNumber,email,faxNumber,cho) VALUES ('$id','$address','$area','$contactnum','$email','$fax','$cho')";
         $result = mysqli_query($conn, $sql);
+        header('Location: managerRegister.php');
     } catch (Exception $e) {
         echo "<script>alert('Something went wrong')</script>";
     }
+
+
 
 }
 ?>

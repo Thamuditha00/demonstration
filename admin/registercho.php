@@ -27,27 +27,39 @@ if(isset($_POST['register-cho'])){
 
   if(isset($_POST['District']) && isset($_POST['ContactNo']) && isset($_POST['Email']) && isset($_POST['Address'])){
 
-
+    $id = uniqid("cho", true);
     $district= $_POST['District'];
     $contactNo= $_POST['ContactNo'];
     $email= $_POST['Email'];
     $address= $_POST['Address'];
+
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+
     
     try {
       $sql = "INSERT INTO register (District, ContactNo,Email,Address)
 					VALUES ('$district','$contactNo','$email',' $address')";
     $result = mysqli_query($con, $sql);
 
-    echo "<script>alert('CHO Added Successfully.')</script>";
-    header("location: ./cho.php");
     }
     catch(Exception $e){
       echo "<script>alert('Something Went wrong')</script>";
 
     }
-    
-    
-    
+
+    try {
+      $sql = "INSERT INTO users (ID,username, password)
+          VALUES ('$id','$username','$password')";
+    $result = mysqli_query($con, $sql);
+    echo "<script>alert('CHO Added Successfully.')</script>";
+    header("location: ./cho.php");
+
+    } catch (Exception $e) {
+      echo "Error: " . $e->getMessage();
+    }
+      
   }
 }
 
@@ -89,7 +101,7 @@ if(isset($_POST['register-cho'])){
     <div class="main-area">
       <div class="main-upper">
         <h1>notification icon</h1>
-        <form action="register.php" method="POST">
+        <form action="" method="POST">
 
       
     </div>
@@ -132,6 +144,26 @@ if(isset($_POST['register-cho'])){
         <br/>
         <br/>
         <input class = "inputs" type="text" placeholder="Enter address" name="Address" id="address" required>
+        <br/>
+        <br/>
+        
+      </div>
+
+      <div class="form-group">
+        <label for="username"><b>Username:</b></label>
+        <br/>
+        <br/>
+        <input class = "inputs" type="text" placeholder="Enter username" name="username" id="username" required>
+        <br/>
+        <br/>
+        
+      </div>
+
+      <div class="form-group">
+        <label for="password"><b>Password:</b></label>
+        <br/>
+        <br/>
+        <input class = "inputs" type="password" placeholder="Enter password" name="password" id="password" required>
         <br/>
         <br/>
         

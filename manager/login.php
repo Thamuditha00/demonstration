@@ -103,7 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div>
-            <p>Doesn't have an account? <a href="register.php">Sign up</a></p>
+            <p>Doesn't have an account? Contact your cho</p>
         </div>
 
     </div>

@@ -44,7 +44,7 @@ if (isset($_POST['login'])) {
 			<div class="input-group">
 				<button name="login" class="button">Login</button></center>
 			</div>
-			<p class="login-register-text">Don't have an account? <a href="signup.php">Sign up here.</a></p>
+			<p class="login-register-text">Don't have an account? Contact admin for registration</p>
 		</form>
 	</div>
 </body>

@@ -32,6 +32,7 @@ if (isset($_POST['register'])) {
     }
     
 }
+echo password_hash('gampahacho@123', PASSWORD_DEFAULT);
 
 ?>
 
