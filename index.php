@@ -8,7 +8,11 @@ $_SESSION['userType'] = 'guest';
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
+<h1>CommuSupport - Demonstration</h1>
 <div class="wrapper">
+
+        
+
     <div class="container">
         <form action="./donee/login.php" method="get">
 
