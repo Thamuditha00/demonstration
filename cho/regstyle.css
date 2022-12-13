@@ -3,8 +3,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.container
-{
+.container {
     display: flex;
     height: 100%;
 }
@@ -26,7 +25,7 @@ body {
     overflow-x: hidden;
 }
 
-.sidenav img{
+.sidenav img {
     width: 100px;
     object-fit: cover;
 }
@@ -39,13 +38,12 @@ body {
     margin-left: 20px;
 }
 
-.sidenav .active
-{
+.sidenav .active {
     border-left: 5px solid #00d749;
     color: #00d749;
 }
-.sidenav a:last-child
-{
+
+.sidenav a:last-child {
     position: absolute;
     bottom: 40px;
 }
@@ -55,14 +53,12 @@ body {
     color: #00d749;
 }
 
-.sidenav a:last-child:hover
-{
+.sidenav a:last-child:hover {
     border-left: 5px solid #d90000;
     color: #d90000
 }
 
-.main-area
-{
+.main-area {
     width: calc(100% - 400px);
     position: absolute;
     top: 0;
@@ -92,14 +88,18 @@ textarea {
     font-size: 13px;
 }
 
-.formStyle button {
+.btn {
     width: 200px;
-    background: #27AE60;
+    background: #06d139;
     font-weight: bold;
     color: #E8E8E8;
     border: 0 none;
-    border-radius: 1px;
+    border-radius: 8px;
     cursor: pointer;
     padding: 10px 5px;
     margin-top: 50px;
+}
+
+.btn:hover {
+    background-color: #00D749;
 }
