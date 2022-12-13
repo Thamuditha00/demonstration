@@ -2,7 +2,7 @@
 
 </tr>
         <tr>
-            <td><?php echo $row['commId']; ?></td>
+            <td><?php echo substr($row['commId'],17); ?></td>
             <td><?php echo $row['address']; ?></td>
             <td><?php echo $row['area']; ?></td>
             <td><?php echo $row['contactNumber']; ?></td>

@@ -78,7 +78,7 @@ $result = mysqli_query($conn, $query) or die("Error querying database");
                 <?php
                 while ($row = mysqli_fetch_array($result)) {
                     echo "<tr>";
-                    echo "<td>" . $row['commId'] . "</td>";
+                    echo "<td>" . substr($row['commId'],17) . "</td>";
                     echo "<td>" . $row['address'] . "</td>";
                     echo "<td>" . $row['area'] . "</td>";
                     echo "<td>" . $row['contactNumber'] . "</td>";

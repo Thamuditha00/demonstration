@@ -59,7 +59,7 @@ html>
             <input type="email" placeholder="Email Address" name="email" required/>
             <p> Fax</p>
             <input type="text" placeholder="Fax" name="fax" required/>
-            <button name="submit" value="done"> Submit</button>
+            <button name="submit" value="done" class="btn"> Submit</button>
         </form>
     </div>
 </div>
