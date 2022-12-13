@@ -36,7 +36,57 @@ $eventModel = new eventModel("root","");
 
 <body>
 
+    <div class="popup" id="popup">
+        <div>
+
+            <div class="row">
+                <img src="../src/managerCMS.svg" alt="CMS" id="categoryIcon">
+            </div>
+
+            <div class="row">            
+                <h2><div id="theme" class="popuptext"></div></h2> 
+            </div>
+
+            <div class="row">
+                <div><p>Event ID:</p></div>
+                <div id="eventID" class="popuptext"></div>
+            </div>
+
+            <div class="row">
+                <div><p>Event category:</p></div>
+                <div id="category" class="popuptext"></div>
+            </div>
+
+            <div class="row">
+                <div><p>Date:</p></div>
+                <div id="date" class="popuptext"></div>
+            </div>
+            
+            <div class="row">
+                <div><p>Time:</p></div>
+                <div id="time" class="popuptext"></div>
+            </div>
+
+            <div class="row">
+                <div><p>Loaction:</p></div>
+                <div id="location" class="popuptext"></div>
+            </div>
+
+            <div>
+                <div><p>Description:</p></div>
+            </div> 
+            <div class="descriptiondiv">
+                <div id="description" class="popuptext"></div>
+            </div>                 
+                     
+            <div class="popupCloseButton create"> <button id="closebutton">Close</button> </div>    
+        </div>
+        
+    </div>
+
     <div class="container">
+
+    
 
         <div class="navbar">
             <div class="logoDiv">
@@ -98,6 +148,8 @@ $eventModel = new eventModel("root","");
         </div>
 
     </div>
+
+    <script src="./index.js"></script>
 
 </body>
 

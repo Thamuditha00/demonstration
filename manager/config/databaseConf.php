@@ -33,7 +33,14 @@ class eventModel {
             return $names;
         }
 
-        public function getEventCategories() {
+        public function getEventCategories($flag = false) {
+            if($flag) {
+                $eventCategoryReceiveStatement = $this->conn->prepare("SELECT eventCategoryID,name FROM eventcategory");
+                $eventCategoryReceiveStatement->execute();
+                $eventCategoryReceiveStatement->setFetchMode(PDO::FETCH_KEY_PAIR);
+                return $eventCategoryReceiveStatement->fetchAll();
+            }
+
             $eventCategoryReceiveStatement = $this->conn->prepare("SELECT * FROM eventcategory");
             $eventCategoryReceiveStatement->execute();
             $eventCategoryReceiveStatement->setFetchMode(PDO::FETCH_ASSOC);
@@ -76,7 +83,7 @@ class eventModel {
             $events = $this->getEvents($username);
             $eventCategoryIcons = $this->getEventCategoryIcons();
             foreach($events as $event) {
-                echo "<div class='eventCard'>";
+                echo "<div class='eventCard' id='${event['eventID']}'>";
                 echo "<div >";
                 echo "<div>";
                 echo "<img src=${eventCategoryIcons[$event['category']]} alt='Blood'>";
@@ -118,6 +125,14 @@ class eventModel {
                 $icons[$eventCategory['eventCategoryID']] = "./../src/eventIcons/event/${eventCategory['icon']}.svg";
             }
             return $icons;
+        }
+
+        public function getEvent($eventID) {
+            $eventReceiveStatement = $this->conn->prepare("SELECT * FROM event WHERE eventID = :eventID");
+            $eventReceiveStatement->bindParam(':eventID', $eventID);
+            $eventReceiveStatement->execute();
+            $eventReceiveStatement->setFetchMode(PDO::FETCH_ASSOC);
+            return $eventReceiveStatement->fetch();
         }
 }
 

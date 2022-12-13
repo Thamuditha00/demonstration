@@ -132,6 +132,13 @@ a[events] {
     padding: 0.75rem 2rem;
 }
 
+.create>button {
+    border: 0;
+    background-color: #00D749;
+    color: white;
+    padding: 0.75rem 2rem;
+}
+
 .mainDown {
     display: flex;
     flex-wrap: wrap;
@@ -205,4 +212,49 @@ a[events] {
 .eventCard:hover {
     box-shadow: 0 0 0.7rem #a6a6a6;
     transform: scale(1.05);
+}
+
+.popup {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.popup>div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.7rem gray;
+    z-index: 2;
+    width: 30vw;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-active {
+    display: block;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
+
+.row>div:last-child {
+    margin-left: auto;
+    margin-right: auto;
 }
