@@ -12,7 +12,7 @@
 
 body
 {
-    background-image: url("demo-background.jpg");
+    background-image: url("images/demo-background.jpg");
     background-size: cover;
 }
 
@@ -22,6 +22,7 @@ body
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: none;
 }
 
 .form {

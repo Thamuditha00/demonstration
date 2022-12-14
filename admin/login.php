@@ -50,29 +50,26 @@ if (isset($_POST['login'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
 
 <div class="container">
-    <div class="title">
-        <h1>Admin Login Form</h1>
+    <div class="form">
+        <i class="material-icons md-48">admin_panel_settings</i>
+        <br>
+        <h1>Hello! Admin</h1>
+        <form action="" method="post">
+            <input type="text" name="username" id="username" placeholder="Username"/>
+            <input type="password" name="password" id="password" placeholder="Password"/>
+
+            <div class="login-btn">
+                <button type="submit" name="login" class="btn-login">Login</button>
+            </div>
+        </form>
     </div>
-    <form method="POST" action="">
-        <div class="form-input">
-            <label for="username"><b>Username:</b></label>
-            <input type="text" name="username" placeholder=" Enter username"/>
-        </div>
-        <div class="form-input">
-            <label for="password"><b>Password:</b></label>
-            <input type="password" name="password" placeholder=" Enter password"/>
-        </div>
-
-
-        <button type="submit" name="login" class="btn-login">Login</button>
-
-    </form>
 </div>
 
 </body>

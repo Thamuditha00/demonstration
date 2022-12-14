@@ -44,25 +44,27 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/login.css">
-    <title>Login</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Donee Login</title>
 </head>
 
 <body>
 
 <div class="container">
     <div class="form">
-        <h1>Login</h1>
+        <i class="material-icons md-48">person</i>
+        <br>
+        <h1>Hello! Donee</h1>
         <form action="" method="post">
-            <input type="text" name="username" id="username" placeholder="username">
-            <input type="password" name="password" id="password" placeholder="password" ">
+            <input type="text" name="username" id="username" placeholder="Username">
+            <input type="password" name="password" id="password" placeholder="Password" ">
+
             <div class="login-btn">
                 <input type="submit" value="Login" id="submit">
             </div>
-            <div class="reg-link">
 
-                <p> Not registered yet?<a href="register.php"> Register </a></p>
-
-            </div>
+            <p> Not registered yet?<a href="register.php"> Register </a></p>
+        </form>
     </div>
 </div>
 </body>
