@@ -101,7 +101,7 @@ if(isset($_POST['register-cho'])){
     <div class="main-area">
       <div class="main-upper">
         <h1>notification icon</h1>
-        <form action="" method="POST" id="registerCHO">
+        <form action="" method="POST" id="registerCHO" onsubmit="return isValidated()">
 
       
     </div>

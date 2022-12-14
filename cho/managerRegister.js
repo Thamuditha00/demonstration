@@ -1,10 +1,10 @@
-let form = document.getElementById("registerCHO");
-let chos = [];
+let form = document.getElementById("registerManager");
 let usernames = [];
+let NICs = [];
 
 function getData() {
 
-    fetch("getData.php", {
+    fetch("getManagerData.php", {
         method: "GET",
         headers: {
             "Return-Type": "application/json, text/plain, */*",
@@ -13,8 +13,8 @@ function getData() {
     })
         .then(response => response.json())
         .then(data => {
-            chos = tolowercase(data['CHO']);
-            usernames = data['usernames'];
+            usernames = tolowercase(data['usernames']);
+            NICs = data['NICs'];
         })
         .catch(error => console.log(error));
 }
@@ -28,28 +28,14 @@ function tolowercase(arr) {
 
 getData();
 
-
-function validateContact() {
-    let contact = form["ContactNo"].value;
-    let contactError = document.getElementById("contactError");
-    if (contact == "" || contact[0] != '0' || contact.length != 10 || isNaN(contact)) {
-        contactError.innerHTML = "Please enter a valid contact number";
+function validateUsername() {
+    let username = form["username"].value;
+    let usernameError = document.getElementById("usernameError");
+    if (usernames.includes(username)) {
+        usernameError.innerHTML = "Username already exists";
         return false;
     }
-    contactError.innerHTML = "";
-    return true;
-}
-
-function validateEmail() {
-    let email = form["Email"].value;
-    let emailError = document.getElementById("emailError");
-    if (!email.match(
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )) {
-        emailError.innerHTML = "Please enter a valid email";
-        return false;
-    }
-    emailError.innerHTML = "";
+    usernameError.innerHTML = "";
     return true;
 }
 
@@ -84,28 +70,21 @@ function validatePassword() {
     return true;
 }
 
-function validateUsername() {
-    let username = form["username"].value;
-    let usernameError = document.getElementById("usernameError");
-    if (usernames.includes(username)) {
-        usernameError.innerHTML = "Username already exists";
+function validateNIC() {
+    let NIC = form["NIC"].value;
+    let NICError = document.getElementById("NICError");
+    if (NIC.length != 12 || !NIC.match(/^[0-9]+$/)) {
+        NICError.innerHTML = "Please enter a valid NIC";
         return false;
     }
-    usernameError.innerHTML = "";
-    return true;
-}
-
-function validateDistrict() {
-    let district = form["District"].value;
-    let districtError = document.getElementById("districtError");
-    if (chos.includes(district.toLowerCase())) {
-        districtError.innerHTML = "CHO exists for this district";
+    if (NICs.includes(NIC)) {
+        NICError.innerHTML = "NIC already exists";
         return false;
     }
-    districtError.innerHTML = "";
+    NICError.innerHTML = "";
     return true;
 }
 
 function isValidated() {
-    return validateContact() && validateEmail() && validatePassword() && validateUsername() && validateDistrict();
+    return validateUsername() && validatePassword() && validateNIC();
 }

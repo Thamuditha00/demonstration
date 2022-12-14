@@ -43,11 +43,12 @@ if (isset($_POST['register'])) {
 	<title>Sign up</title>
 </head>
 <body>
-		<form action="" method="POST" class="form">
+		<form action="" method="POST" class="form" id="registerManager" onsubmit="isValidate()">
         <p class="login-text" style="font-size: 2rem; font-weight: 800;">Please add manager's details</p>
 				<input type="text" placeholder="Name" name="name"required>
 				<input type="text" placeholder="age" name="number"required>
-				<input type="text" placeholder="NIC" name="NIC"required>
+				<input type="text" placeholder="NIC" name="NIC" onkeyup="validateNIC()" required>
+				<span id="NICError"></span>
 
 				<select name=gender>
 					<option value=""> Select </option>
@@ -55,10 +56,14 @@ if (isset($_POST['register'])) {
 					<option value="female"> Female </option>
 				</select>
 
-				<input type="text" placeholder="Username" name="username"required>
-				<input type="password" placeholder="Password" name="password" required>
+				<input type="text" placeholder="Username" name="username" onkeyup="validateUsername()" required>
+				<span id="usernameError"></span>
+				<input type="password" placeholder="Password" name="password" onkeyup="validatePassword()" required>
+				<span id="passwordError"></span>
 				<button name="register" class="button">Register</button>
 		</form>
 	</div>
 </body>
+
+	<script src="./managerRegister.js"></script>
 </html>

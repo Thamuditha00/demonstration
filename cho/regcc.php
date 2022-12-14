@@ -47,22 +47,28 @@ html>
     </div>
     <div class="main-area">
         <h2>Add a Community Center</h2>
-        <form method="POST" action="" class="formStyle">
+        <form method="POST" action="" class="formStyle" id="registerCC" onsubmit="return isValidated()">
 
             <p>Address</p>
             <input type="text" placeholder="Address" name="address" required/>
             <p>Area</p>
-            <input type="text" placeholder="Area" name="area"/>
+            <input type="text" placeholder="Area" name="area" onchange="validateAreas()"/>
+            <span id="areaError"></span>
             <p> Contact Number</p>
-            <input type="text" placeholder="Contact Number" name="contactNumber" required/>
+            <input type="text" placeholder="Contact Number" name="contactNumber" onkeyup="validateContact()" required/>
+            <span id="contactError"></span>
             <p> Email Address</p>
-            <input type="email" placeholder="Email Address" name="email" required/>
+            <input type="email" placeholder="Email Address" name="email" onkeyup="validateEmail()" required/>
+            <span id="emailError"></span>
             <p> Fax</p>
-            <input type="text" placeholder="Fax" name="fax" required/>
+            <input type="text" placeholder="Fax" name="fax" onkeyup="validateFax()" required/>
+            <span id="faxError"></span>
             <button name="submit" value="done" class="btn"> Submit</button>
         </form>
     </div>
 </div>
+
+<script src="./regcc.js"></script>
 
 </body>
 

@@ -45,15 +45,22 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 ?>
 
-<form method="post" action="">
-    <input type="text" name="fname" placeholder="first name"> 
-    <input type="text" name="lname" placeholder="last name">
-    <input type="text" name="NIC" placeholder="NIC">  
-    <input type="text" name="email" placeholder="email">
-    <input type="text" name="contactno" placeholder="contact number">  
+<form method="post" action="" id="registerDonee" onsubmit="isValidated()">
+    <input type="text" name="fname" placeholder="first name" required> 
+    <input type="text" name="lname" placeholder="last name" required>
+    <input type="text" name="NIC" placeholder="NIC" onkeyup="validateNIC()" required>
+    <span id="NICError"></span>  
+    <input type="text" name="email" placeholder="email" onkeyup="validateEmail()" required>
+    <span id="emailError"></span>
+    <input type="text" name="contactno" placeholder="contact number" onkeyup="validateContact()" required>
+    <span id="contactError"></span>  
 
 
-    <input type="text" name="username" placeholder="username"> 
-    <input type="password" name="password" placeholder="password">
+    <input type="text" name="username" placeholder="username" onkeyup="validateUsername()" required>
+    <span id="usernameError"></span> 
+    <input type="password" name="password" placeholder="password" onkeyup="validatePassword()" required>
+    <span id="passwordError"></span>
     <button type="submit">Register</button>
 </form>
+
+<script src="./register.js"></script>
