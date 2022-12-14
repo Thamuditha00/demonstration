@@ -101,7 +101,7 @@ if(isset($_POST['register-cho'])){
     <div class="main-area">
       <div class="main-upper">
         <h1>notification icon</h1>
-        <form action="" method="POST">
+        <form action="" method="POST" id="registerCHO">
 
       
     </div>
@@ -116,7 +116,8 @@ if(isset($_POST['register-cho'])){
         <label class = "district" for="District"><b>District</b></label>
         <br/>
         <br/>
-        <input class = "inputs"type="text" placeholder="Enter DIstrict" name="District" id="district" required>
+        <input class = "inputs"type="text" placeholder="Enter DIstrict" name="District" id="district" onchange="validateDistrict()" required>
+        <span id="districtError"></span>
         <br/>
         
       </div>
@@ -124,7 +125,8 @@ if(isset($_POST['register-cho'])){
         <label for="Contact Number"><b>Contact Number:</b></label>
         <br/>
         <br/>
-        <input class = "inputs" type="text" placeholder="Enter number" name="ContactNo" id="contactNo" required>
+        <input class = "inputs" type="text" placeholder="Enter number" name="ContactNo" id="contactNo" onkeyup="validateContact()" required>
+        <span id="contactError"></span>
         <br/>
         
         
@@ -134,7 +136,8 @@ if(isset($_POST['register-cho'])){
         <label for="Email"><b>Email:</b></label>
         <br/>
         <br/>
-        <input class = "inputs" type="text" placeholder="Enter email" name="Email" id="email" required>
+        <input class = "inputs" type="text" placeholder="Enter email" name="Email" id="email" onkeyup="validateEmail()" required>
+        <span id="emailError"></span>
         <br/>
         
 
@@ -153,7 +156,8 @@ if(isset($_POST['register-cho'])){
         <label for="username"><b>Username:</b></label>
         <br/>
         <br/>
-        <input class = "inputs" type="text" placeholder="Enter username" name="username" id="username" required>
+        <input class = "inputs" type="text" placeholder="Enter username" name="username" id="username" onchange="validateUsername()" required>
+        <span id="usernameError"></span>
         <br/>
         <br/>
         
@@ -163,7 +167,8 @@ if(isset($_POST['register-cho'])){
         <label for="password"><b>Password:</b></label>
         <br/>
         <br/>
-        <input class = "inputs" type="password" placeholder="Enter password" name="password" id="password" required>
+        <input class = "inputs" type="password" placeholder="Enter password" name="password" id="password" onkeyup="validatePassword()" required>
+        <span id="passwordError"></span>
         <br/>
         <br/>
         
@@ -178,6 +183,8 @@ if(isset($_POST['register-cho'])){
     </div>
 
   </div>
+
+  <script src="./registercho.js"></script>
 </body>
 </html>
 

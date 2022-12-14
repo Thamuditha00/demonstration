@@ -96,10 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="mainDown">
             <div class="formDiv">
-                <form action="" method="post">
+                <form action="" method="post" name="eventForm" id="createForm" onsubmit="return isValidated()">
                     <div class="form-block">
                     <label for="eventCategory">Event Category : </label>
-                    <select name="eventCategory" id="eventCategory" class="formSelect">
+                    <select name="eventCategory" id="eventCategory" class="formSelect" required>
                         <option value=''> select</option>
                         <?php
                         foreach ($names as $key => $value) {
@@ -110,21 +110,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                     <label for="eventTheme">Event Name : </label>
-                    <input type="text" name="eventTheme" id="eventTheme" size="40">
+                    <input type="text" name="eventTheme" id="eventTheme" size="40" required>
                     <label for="eventContact">Add a contact No : </label>
-                    <input type="text" name="eventContact" id="eventContact" size="40">
+                    <input type="text" name="eventContact" id="eventContact" size="40" onkeyup="validateContact()" required>
+                    <span id="contactError"></span>
                     <div class="form-block">
                     <label for="eventDate">On : </label>
-                    <input type="date" name="eventDate" id="eventDate" size="40"></div>
+                    <input type="date" name="eventDate" id="eventDate" size="40" onchange="validateDate()" required></div>
+                    <span id="dateError"></span>
                     <div class="form-block"><label for="eventTime">At : </label>
-                        <input type="time" name="eventTime" id="eventTime" size="40"></div>
-                    <label for="eventLocation">Location : </label>
-                    <input type="text" name="eventLocation" id="eventLocation" size="40">
+                        <input type="time" name="eventTime" id="eventTime" size="40" required></div>
+                    <label for="eventLocation">Venue : </label>
+                    <input type="text" name="eventLocation" id="eventLocation" size="40" required>
                     <label for="eventDescription">Description : </label>
                     <textarea name="eventDescription" id="eventDescription" cols="40" rows="10"
-                              class="formTextarea"></textarea>
+                              class="formTextarea" required></textarea>
                     <div class="form-block">
-                    <button type="submit" name="createEvent">Confirm</button>
+                    <button type="submit" name="createEvent" id="createEventButton">Confirm</button>
                     </div>
 
                 </form>
@@ -136,6 +138,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
 </div>
+
+<script src="./index.js"></script>
 
 </body>
 
