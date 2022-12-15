@@ -1,66 +1,64 @@
 <?php
 session_start();
-$host="localhost";
-$username="root";
-$password="";
-$db="interim";
+$host = "localhost";
+$username = "root";
+$password = "";
+$db = "interim";
 
-$con=mysqli_connect($host,$username,$password,$db);
+$con = mysqli_connect($host, $username, $password, $db);
 
-if(!isset($_SESSION['username']) && $_SESSION['userType'] != 'admin'){
-  header("location:login.php");
+if (!isset($_SESSION['username']) && $_SESSION['userType'] != 'admin') {
+    header("location:login.php");
 }
 
-if(isset($_POST['logout'])){
-  session_destroy();
-  header("location:../");
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("location:../");
 }
 
 // mysqli_connect($host,$username,$password);
 // mysqli_select_db($db);
 if (mysqli_connect_errno()) {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  exit();
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit();
 }
 
-if(isset($_POST['register-cho'])){
+if (isset($_POST['register-cho'])) {
 
-  if(isset($_POST['District']) && isset($_POST['ContactNo']) && isset($_POST['Email']) && isset($_POST['Address'])){
+    if (isset($_POST['District']) && isset($_POST['ContactNo']) && isset($_POST['Email']) && isset($_POST['Address'])) {
 
-    $id = uniqid("cho", true);
-    $district= $_POST['District'];
-    $contactNo= $_POST['ContactNo'];
-    $email= $_POST['Email'];
-    $address= $_POST['Address'];
+        $id = uniqid("cho", true);
+        $district = $_POST['District'];
+        $contactNo = $_POST['ContactNo'];
+        $email = $_POST['Email'];
+        $address = $_POST['Address'];
 
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $username = $_POST['username'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 
-    
-    try {
-      $sql = "INSERT INTO register (District, ContactNo,Email,Address)
+        try {
+            $sql = "INSERT INTO register (District, ContactNo,Email,Address)
 					VALUES ('$district','$contactNo','$email',' $address')";
-    $result = mysqli_query($con, $sql);
+            $result = mysqli_query($con, $sql);
 
-    }
-    catch(Exception $e){
-      echo "<script>alert('Something Went wrong')</script>";
+        } catch (Exception $e) {
+            echo "<script>alert('Something Went wrong')</script>";
 
-    }
+        }
 
-    try {
-      $sql = "INSERT INTO users (ID,username, password)
+        try {
+            $sql = "INSERT INTO users (ID,username, password)
           VALUES ('$id','$username','$password')";
-    $result = mysqli_query($con, $sql);
-    echo "<script>alert('CHO Added Successfully.')</script>";
-    header("location: ./cho.php");
+            $result = mysqli_query($con, $sql);
+            echo "<script>alert('CHO Added Successfully.')</script>";
+            header("location: ./cho.php");
 
-    } catch (Exception $e) {
-      echo "Error: " . $e->getMessage();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
     }
-      
-  }
 }
 
 
@@ -69,122 +67,99 @@ if(isset($_POST['register-cho'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>side navigation bar</title>
-  <link rel="stylesheet"  href="reg.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>side navigation bar</title>
+    <link rel="stylesheet" href="reg.css">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="sidebar.css">
 </head>
 <body>
-  
-  <div class="wrapper">
-      <div class="sidebar">
-          <img class="logo" src="logo.svg">
-          <ul>
 
-              <li><a href="#">Donees</a></li>
-              <li><a href="#">Donors</a></li>
-              <li><a href="#">Drivers</a></li>
-              <li><a href="#">Employees</a></li>
-              <li><a href="#">Community Centers</a></li>
-              <li class="active"><a href="cho.php">Community Head Offices</a></li>
-              <li><a href="#">Request</a></li>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Donations</a></li>
-              <li><a href="#">Complains</a></li>
-          </ul>
-          <form action="" method="POST">
-              <button class="logout" type="submit" name="logout">Logout</button>
-          </form>
-      </div>
-    
+<div class="wrapper">
+    <?php
+    include_once 'sidebar.php';
+    ?>
     <div class="main-area">
-      <div class="main-upper">
-        <h1>notification icon</h1>
-        <form action="" method="POST" id="registerCHO" onsubmit="return isValidated()">
+        <div class="form">
+            <h1>Register CHO</h1>
+            <div class="content">
+                <form action="" method="POST" id="registerCHO">
+                    <label class="district" for="District">District</label>
+                    <select name="District" id="district" onchange="validateDistrict()" required>
+                        <option value="Ampara">Ampara</option>
+                        <option value="Anuradhapura">Anuradhapura</option>
+                        <option value="Badulla">Badulla</option>
+                        <option value="Batticaloa">Batticaloa</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Galle">Galle</option>
+                        <option value="Gampaha">Gampaha</option>
+                        <option value="Hambantota">Hambantota</option>
+                        <option value="Jaffna">Jaffna</option>
+                        <option value="Kalutara">Kalutara</option>
+                        <option value="Kandy">Kandy</option>
+                        <option value="Kegalle">Kegalle</option>
+                        <option value="Kilinochchi">Kilinochchi</option>
+                        <option value="Kurunegala">Kurunegala</option>
+                        <option value="Mannar">Mannar</option>
+                        <option value="Matale">Matale</option>
+                        <option value="Matara">Matara</option>
+                        <option value="Monaragala">Monaragala</option>
+                        <option value="Mullaitivu">Mullaitivu</option>
+                        <option value="Nuwara Eliya">Nuwara Eliya</option>
+                        <option value="Polonnaruwa">Polonnaruwa</option>
+                        <option value="Puttalam">Puttalam</option>
+                        <option value="Ratnapura">Ratnapura</option>
+                        <option value="Trincomalee">Trincomalee</option>
+                        <option value="Vavuniya">Vavuniya</option>
+                    </select>
+                    <span id="districtError"></span>
 
-      
+                    <label for="Contact Number">Contact Number:</label>
+                    <input class="inputs" type="text" placeholder="Enter number" name="ContactNo" id="contactNo"
+                           onkeyup="validateContact()" required>
+                    <span id="contactError"></span>
+
+
+                    <label for="Email">Email:</label>
+                    <input class="inputs" type="text" placeholder="Enter email" name="Email" id="email"
+                           onkeyup="validateEmail()" required>
+                    <span id="emailError"></span>
+
+                    <label for="Address">Address:</label>
+                    <input class="inputs" type="text" placeholder="Enter address" name="Address" id="address" required>
+
+                    <label for="username">Username:</label>
+                    <input class="inputs" type="text" placeholder="Enter username" name="username" id="username"
+                           onchange="validateUsername()" required>
+                    <span id="usernameError"></span>
+
+                    <label for="password">Password:</label>
+                    <div class="pw-list">
+                        <ul class="pw-list">
+                            <li>Password length should be between 8 and 15 characters</li>
+                            <li>Password should contain at least one uppercase letter</li>
+                            <li>Password should contain at least one lowercase letter</li>
+                            <li>Password should contain at least one number</li>
+                            <li>Password should contain at least one special character</li>
+                        </ul>
+                    </div>
+                    <input class="inputs" type="password" placeholder="Enter password" name="password" id="password"
+                           onkeyup="validatePassword()" required>
+                    <span id="passwordError"></span>
+
+                    <div class="submit-btn">
+                        <button type="submit" class="registerbtn" name="register-cho">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-      <div class="cho">
-        <h2>Register CHO</h2>
-      </div>
-      
-      
-      <div class="content">
-  
-      <div class="form-group">
-        <label class = "district" for="District"><b>District</b></label>
-        <br/>
-        <br/>
-        <input class = "inputs"type="text" placeholder="Enter DIstrict" name="District" id="district" onchange="validateDistrict()" required>
-        <span id="districtError"></span>
-        <br/>
-        
-      </div>
-      <div class="form-group">
-        <label for="Contact Number"><b>Contact Number:</b></label>
-        <br/>
-        <br/>
-        <input class = "inputs" type="text" placeholder="Enter number" name="ContactNo" id="contactNo" onkeyup="validateContact()" required>
-        <span id="contactError"></span>
-        <br/>
-        
-        
+</div>
 
-      </div>
-      <div class="form-group">
-        <label for="Email"><b>Email:</b></label>
-        <br/>
-        <br/>
-        <input class = "inputs" type="text" placeholder="Enter email" name="Email" id="email" onkeyup="validateEmail()" required>
-        <span id="emailError"></span>
-        <br/>
-        
-
-      </div>
-      <div class="form-group">
-        <label for="Address"><b>Address:</b></label>
-        <br/>
-        <br/>
-        <input class = "inputs" type="text" placeholder="Enter address" name="Address" id="address" required>
-        <br/>
-        <br/>
-        
-      </div>
-
-      <div class="form-group">
-        <label for="username"><b>Username:</b></label>
-        <br/>
-        <br/>
-        <input class = "inputs" type="text" placeholder="Enter username" name="username" id="username" onchange="validateUsername()" required>
-        <span id="usernameError"></span>
-        <br/>
-        <br/>
-        
-      </div>
-
-      <div class="form-group">
-        <label for="password"><b>Password:</b></label>
-        <br/>
-        <br/>
-        <input class = "inputs" type="password" placeholder="Enter password" name="password" id="password" onkeyup="validatePassword()" required>
-        <span id="passwordError"></span>
-        <br/>
-        <br/>
-        
-      </div>
-      <button type="submit" class="registerbtn" name="register-cho">Register</button>   
-    </form>
-
-  </div>
-      
-      
-
-    </div>
-
-  </div>
-
-  <script src="./registercho.js"></script>
+<script src="./registercho.js"></script>
 </body>
 </html>
 

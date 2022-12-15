@@ -1,0 +1,77 @@
+.form {
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+input {
+    width: 400px;
+    height: 60px;
+    padding-left: 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
+
+h1 {
+    text-align: center;
+}
+
+label {
+    margin-top: 16px;
+    margin-bottom: 4px;
+}
+
+select {
+    width: 400px;
+    height: 60px;
+    padding-left: 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.pw-list
+{
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.form span{
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+#passwordError
+{
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.submit-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    background-color: #00b300;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    padding: 20px 40px;
+    border-radius: 8px;
+}
+

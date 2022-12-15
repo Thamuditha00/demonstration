@@ -18,33 +18,17 @@ if (isset($_POST['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>side navigation bar</title>
     <link rel="stylesheet" href="cho.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="sidebar.css">
+
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar">
-        <img class="logo" src="logo.svg">
-        <ul>
+    <?php
+    include_once 'sidebar.php';
+    ?>
 
-            <li><a href="#">Donees</a></li>
-            <li><a href="#">Donors</a></li>
-            <li><a href="#">Drivers</a></li>
-            <li><a href="#">Employees</a></li>
-            <li><a href="#">Community Centers</a></li>
-            <li class="active"><a href="cho.php">Community Head Offices</a></li>
-            <li><a href="#">Request</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Donations</a></li>
-            <li><a href="#">Complains</a></li>
-
-
-        </ul>
-
-        <form action="" method="POST">
-            <button class="logout" type="submit" name="logout">Logout</button>
-        </form>
-
-    </div>
     <div class="main-area">
         <div class="main-upper">
             <h2>Community Head Office</h2>
