@@ -51,7 +51,7 @@ if (isset($_POST['register'])) {
     <div class="main">
         <div class="form">
             <h1>Add Manager details</h1>
-            <form action="" method="POST" onsubmit="return isValidate()" id="manager-reg">
+            <form action="" method="POST" id="managerReg" onsubmit="return isValidate()">
                 <input type="text" placeholder="Name" name="name" required>
                 <input type="text" placeholder="age" name="number" required>
                 <input type="text" placeholder="NIC" name="NIC" onkeyup="validateNIC()" required>

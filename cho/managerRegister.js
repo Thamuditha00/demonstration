@@ -1,4 +1,4 @@
-let form = document.getElementById("registerManager");
+let form = document.getElementById("managerReg");
 let usernames = [];
 let NICs = [];
 

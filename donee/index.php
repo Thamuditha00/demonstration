@@ -53,7 +53,7 @@ $result = mysqli_query($conn, $query) or die("Error querying database");
       <a href="#">
         <div class="profile-box">
 
-          John Doe
+          <?php echo $_SESSION['username']; ?>
           <img src="images/profile.png" alt="profile-pic" />
 
           <!-- div with an icon tag for notifications -->

@@ -68,7 +68,7 @@
         
 
         <label for="amount">Amount</label>
-        <input type="text" name="amount" id="amount" placeholder="Amount" required>
+        <input type="number" name="amount" id="amount" placeholder="Amount" required>
 
         <select name="unit" id="unit" required>
             <option value="">Select Unit</option>

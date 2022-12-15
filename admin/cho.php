@@ -85,7 +85,7 @@ if (isset($_POST['logout'])) {
           <td>" . $row["ContactNo"] . "</td>
           <td>" . $row["Email"] . "</td>
           <td>" . $row["Address"] . "</td>
-          <td><form action='view.php' method='POST'>
+          <td><form action='' method='POST'>
               <button class='button button1'>view</button>
           </form>
           </td>

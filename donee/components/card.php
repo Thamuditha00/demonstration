@@ -4,7 +4,7 @@
           <?php echo $row['item']; ?>
         </span><br/>
 
-    <span class="rq-status">Approval
+    <span class="rq-status">Approval:
           <?php echo $row['approval']; ?>
         </span>
 

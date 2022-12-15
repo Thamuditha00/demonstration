@@ -46,11 +46,11 @@ if (isset($_POST['submit'])) {
             <h2>Register a Community Center</h2>
             <form method="POST" action="" class="formStyle" id="registerCC" onsubmit="return isValidated()">
 
-                <label for="address">Address</label>
-                <input type="text" placeholder="Address" name="address" required/>
                 <label for="area">Area</label>
                 <input type="text" placeholder="Area" name="area" onchange="validateAreas()"/>
                 <span id="areaError"></span>
+                <label for="address">Address</label>
+                <input type="text" placeholder="Address" name="address" required/>
                 <label for="contactNumber">Contact Number</label>
                 <input type="text" placeholder="Contact Number" name="contactNumber" onkeyup="validateContact()"
                        required/>
@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
                 <div class="submit-button">
 
                 <button name="submit" value="done" class="btn">Continue</button>
-                    <p>Add Manager Details Next<i class='bx bx-right-arrow-alt' ></i></p>
+                    <p>Add Manager Details Next</p>
                 </div>
             </form>
         </div>

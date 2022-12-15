@@ -63,12 +63,12 @@ if (isset($_POST['create-req'])) {
     $notes = $_POST['notes'];
 
     $query = "INSERT INTO requests (donee,item, amount, urgency, notes) VALUES ('$username','$item', '$amount', '$urgency', '$notes')";
-    echo "Query correct" . $query;
     try {
         if ($conn->query($query) === TRUE) {
-            header('Location: index.php');
+            echo "<script> console.log('correct') </script>";
+            header('Location: ./index.php');
         } else {
-            echo "An error occured";
+            echo "<script> alert('An error has occured') </script>";
         }
 
     } catch (Exception $e) {
