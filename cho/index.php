@@ -49,7 +49,7 @@ $result = mysqli_query($conn, $query) or die("Error querying database");
         <div class="profile-box">
             <div class="profile">
                 <div class="profile-text">
-                    <p style="font-size: 18px;"><b>Colombo CHO</b></p>
+                    <p style="font-size: 18px;"><b><?php echo $_SESSION['username']?></b></p>
                     <p style="font-size: 14px; color: gray">Community Head Office</p>
                 </div>
                 <img class="profile-pic" src="images/profile.png">

@@ -4,11 +4,17 @@ session_start();
 
 include_once("./config/authController.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if (!isset($_SESSION['username'])) {
-        header("Location: ./manager");
+    if(isset($_SERVER['loginError'])) {
+        echo "<script> console.log('".$_SESSION['loginError']."') </script>";
+        echo "<script> alert('".$_SESSION['loginError']."') </script>";
+        unset($_SESSION['loginError']);
     }
+    
+    
+        
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -49,35 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 <div class="container">
-    <?php
-    if (isset($_SESSION['registrationMsg'])) {
-        echo "<div><h5>" . $_SESSION['registrationMsg'] . "!</h5></div>";
-        echo "<div><h5>Please login to continue</h5></div>";
-        unset($_SESSION['registrationMsg']);
-    }
-    ?>
 
     <div class="form">
         <i class="material-icons md-48">admin_panel_settings</i>
         <br>
         <h1>Hello! Manager</h1>
         <form action="#" method="post">
-
             <input type="text" placeholder="Username" name="username" id="username">
             <input type="password" placeholder="Password" name="password" id="password">
             <div class="login-btn">
                 <button class="btn-login">Login</button>
-            </div>
-            <div class="loginError">
-                <?php
-                if (isset($_SESSION['errorRemove'])) {
-                    echo $_SESSION['errorRemove'];
-                    unset($_SESSION['errorRemove']);
-                } else if (isset($_SESSION['loginError'])) {
-                    echo $_SESSION['loginError'];
-                    unset($_SESSION['loginError']);
-                }
-                ?>
             </div>
             <p>Doesn't have an account? Contact your cho</p>
         </form>

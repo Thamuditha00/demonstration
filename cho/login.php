@@ -8,12 +8,23 @@ if (isset($_POST['login'])) {
     $sql = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($conn, $sql);
     $arr = $result->fetch_array();
-    if (password_verify($_POST['password'], $arr['password']) && str_contains($arr['ID'], 'cho')) {
-        $_SESSION['username'] = $username;
-        $_SESSION['userType'] = 'cho';
-        header("Location: index.php");
-    } else {
-        echo "<script>alert('Email or Password is Wrong.')</script>";
+
+    if(!empty($arr)) {
+        if (str_contains($arr['ID'], 'cho')) {
+            if (password_verify($_POST['password'], $arr['password'])) {
+                $_SESSION['username'] = $username;
+                $_SESSION['userType'] = 'cho';
+                header("Location: index.php");
+            } else {
+                echo "<script>alert('Incorrect Password! Please try again')</script>";
+            }
+        }
+        else {
+            echo "<script> alert('User does not exists!') </script>";
+        }
+    }
+    else {
+        echo "<script> alert('User does not exists!') </script>";
     }
 }
 ?>

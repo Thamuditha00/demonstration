@@ -19,17 +19,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $arr = $result->fetch_assoc();
 
     if (mysqli_num_rows($result) == 1) {
-        if (password_verify($password, $arr['password']) && str_contains($arr['ID'], 'donee')) {
-            $_SESSION['userType'] = 'donee';
-            $_SESSION['username'] = $username;
-            header('Location: index.php');
-        } else {
-            echo "Invalid password";
+        if(str_contains($arr['ID'], 'donee')) {
+            if (password_verify($password, $arr['password']) ) {
+                $_SESSION['userType'] = 'donee';
+                $_SESSION['username'] = $username;
+                header('Location: index.php');
+            } else {
+                echo "<script>alert('Incorrect Password! Please try again')</script>";
+            }
         }
-        header('Location: index.php');
-        exit();
+        else {
+            echo "<script> alert('User does not exists!') </script>";
+        }     
     } else {
-        echo "Incorrect username or password";
+        echo "<script> alert('User does not exists!') </script>";
     }
 }
 

@@ -29,13 +29,24 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($con, $sql);
     $arr = $result->fetch_array();
 
-    if (password_verify($password, $arr['password']) && str_contains($arr['username'], 'admin')) {
-        $_SESSION['username'] = $username;
-        $_SESSION['userType'] = 'admin';
-        header("Location: cho.php");
-    } else {
-        echo "incorrect password";
+    if(!empty($arr)) {
+        if (str_contains($arr['ID'], 'admin')) {
+            if (password_verify($password, $arr['password'])) {
+                $_SESSION['username'] = $username;
+                $_SESSION['userType'] = 'admin';
+                header("Location: cho.php");
+            } else {
+                echo "<script> alert('Incorrect password! Please try again') </script>";
+            }
+        }
+        else {
+            echo "<script> alert('User does not exists!') </script>";
+        }
     }
+    else {
+        echo "<script> alert('User does not exists!') </script>";
+    }
+    
 
 
 }
