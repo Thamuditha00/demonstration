@@ -89,8 +89,7 @@ class eventModel {
                 echo "<img src=${eventCategoryIcons[$event['category']]} alt='Blood'>";
                 echo "</div>";
                 echo "<div>";
-                echo "<img src='./../src/eventIcons/participants.svg' alt='participants'>";
-                echo "<p>${event['participationCount']}</p>";
+                echo "<p class='partic'><i class='bx bx-user'></i> ${event['participationCount']}</p>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div>";

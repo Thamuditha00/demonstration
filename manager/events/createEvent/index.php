@@ -37,8 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../styles.css">
-    <link rel="stylesheet" href="create_event_styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="form.css">
+
     <title>Create Event</title>
 </head>
 
@@ -46,97 +49,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="container">
 
-    <div class="navbar">
-        <div class="logoDiv">
-            <img src="../../src/managerCMS.svg" alt="CMS">
-        </div>
-
-        <div class="dashboardLinks">
-            <ul>
-                <li><a href="#">Requests</a></li>
-                <li><a events href="../">Events</a></li>
-                <li><a href="#">Donations</a></li>
-                <li><a href="#">Donees</a></li>
-                <li><a href="#">Donors</a></li>
-                <li><a href="#">Drivers</a></li>
-            </ul>
-
-        </div>
-
-        <div class="accountLinks">
-            <ul>
-                <li><a href="#">Account</a></li>
-                <form action="" method="post">
-                    <input type="submit" name="logout" value="Log Out">
-                </form>
-            </ul>
-        </div>
-
-    </div>
-
+    <?php include_once "../../sidebar.php" ?>
     <div class="main">
-        <div class="mainUpper">
-            <h1>notification icon</h1>
+        <div class="form">
+            <h1>Create an Event</h1>
+            <form action="" method="post" name="eventForm" id="createForm" onsubmit="return isValidated()">
+                <label for="eventCategory">Event Category : </label>
+                <select name="eventCategory" id="eventCategory" class="formSelect" required>
+                    <option value=''> select</option>
+                    <?php
+                    foreach ($names as $key => $value) {
+                        echo "<option value='$key'>$value</option>";
+                    }
+                    ?>
+                </select>
+
+                <label for="eventTheme">Event Name : </label>
+                <input type="text" name="eventTheme" id="eventTheme" size="40" required>
+                <label for="eventContact">Add a contact No : </label>
+                <input type="text" name="eventContact" id="eventContact" size="40" onkeyup="validateContact()" required>
+                <span id="contactError"></span>
+                <label for="eventDate">Date: </label>
+                <input type="date" name="eventDate" id="eventDate" size="40" onchange="validateDate()" required>
+
+        <span id="dateError"></span>
+        <label for="eventTime">Time: </label>
+            <input type="time" name="eventTime" id="eventTime" size="40" required>
+        <label for="eventLocation">Venue : </label>
+        <input type="text" name="eventLocation" id="eventLocation" size="40" required>
+        <label for="eventDescription">Description : </label>
+        <textarea name="eventDescription" id="eventDescription" cols="40" rows="10"
+                  class="formTextarea" required></textarea>
+        <div class="submit-button">
+            <button type="submit" name="createEvent" id="createEventButton">Confirm</button>
         </div>
 
-        <div class="dashHeading">
-            <div class="dashName">
-                <h1>Create a event</h1>
-            </div>
-
-        </div>
-
-        <div>
-            <?php
-            if ($returnMsg != '') {
-                echo "<h2> $returnMsg </h2>";
-            }
-            ?>
-
-        </div>
-
-        <div class="mainDown">
-            <div class="formDiv">
-                <form action="" method="post" name="eventForm" id="createForm" onsubmit="return isValidated()">
-                    <div class="form-block">
-                    <label for="eventCategory">Event Category : </label>
-                    <select name="eventCategory" id="eventCategory" class="formSelect" required>
-                        <option value=''> select</option>
-                        <?php
-                        foreach ($names as $key => $value) {
-                            echo "<option value='$key'>$value</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                    <label for="eventTheme">Event Name : </label>
-                    <input type="text" name="eventTheme" id="eventTheme" size="40" required>
-                    <label for="eventContact">Add a contact No : </label>
-                    <input type="text" name="eventContact" id="eventContact" size="40" onkeyup="validateContact()" required>
-                    <span id="contactError"></span>
-                    <div class="form-block">
-                    <label for="eventDate">On : </label>
-                    <input type="date" name="eventDate" id="eventDate" size="40" onchange="validateDate()" required></div>
-                    <span id="dateError"></span>
-                    <div class="form-block"><label for="eventTime">At : </label>
-                        <input type="time" name="eventTime" id="eventTime" size="40" required></div>
-                    <label for="eventLocation">Venue : </label>
-                    <input type="text" name="eventLocation" id="eventLocation" size="40" required>
-                    <label for="eventDescription">Description : </label>
-                    <textarea name="eventDescription" id="eventDescription" cols="40" rows="10"
-                              class="formTextarea" required></textarea>
-                    <div class="form-block">
-                    <button type="submit" name="createEvent" id="createEventButton">Confirm</button>
-                    </div>
-
-                </form>
-            </div>
-
-
-        </div>
-
+        </form>
     </div>
+
+
+</div>
 
 </div>
 

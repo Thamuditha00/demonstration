@@ -52,12 +52,9 @@ $result = mysqli_query($conn, $query) or die("Error querying database");
       </div>
       <a href="#">
         <div class="profile-box">
-
           <?php echo $_SESSION['username']; ?>
           <img src="images/profile.png" alt="profile-pic" />
-
-          <!-- div with an icon tag for notifications -->
-        </div>
+          </div>
       </a>
     </div>
 
