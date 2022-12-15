@@ -30,6 +30,10 @@ public function checkCredentials($usrname, $pass) {
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $result = $stmt->fetchAll();
 
+        if(empty($result)) {
+            return "username does not exists";
+        }
+
         if(!str_contains($result[0]['ID'], 'manager')) {
             return "username does not exists";
         }
@@ -37,10 +41,13 @@ public function checkCredentials($usrname, $pass) {
         if(empty($result)) {
             return "username do not exists";
         }
+        if(empty($pass)) {
+            return "Please enter the password";
+        }
         if(password_verify($pass, $result[0]['password'])) {
             return "";
         } else {
-            return "Either password or username is wrong";
+            return "Incorrect password! Please try again";
         }
     } catch(PDOException $e) {
         return "Login failed: " . $e->getMessage();

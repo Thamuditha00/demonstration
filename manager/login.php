@@ -30,9 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: ./manager");
         }
     } else {
-        $_SESSION['loginError'] = $errMsg;
-        $_SESSION['errorRemove'] = false;
-        header("Location: ./login.php");
+        echo "<script> alert('".$errMsg."') </script>";
     }
 }
 
