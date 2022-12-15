@@ -66,7 +66,7 @@ if (isset($_POST['create-req'])) {
     try {
         if ($conn->query($query) === TRUE) {
             echo "<script> console.log('correct') </script>";
-            header('Location: ./index.php');
+            header('Location: ./');
         } else {
             echo "<script> alert('An error has occured') </script>";
         }

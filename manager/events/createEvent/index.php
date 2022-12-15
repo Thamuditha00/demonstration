@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $returnMsg = $eventModel->createEvent($_POST, $_SESSION['username']);
+    header("Location: ../");
 
 
 }

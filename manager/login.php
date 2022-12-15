@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_SESSION['returnUrl'])) {
             header("Location: ${_SESSION['returnUrl']}");
         } else {
-            header("Location: ./manager");
+            header("Location: ./events");
         }
     } else {
         echo "<script> alert('".$errMsg."') </script>";

@@ -11,7 +11,7 @@ $conn = mysqli_connect($server, $user, $pass, $db) or die("Error connecting to d
 
 <?php
 
-if($_SESSION['userType'] != 'donee') {
+if(empty($_SESSION['username']) || $_SESSION['userType'] != 'donee') {
     header('Location: login.php');
     exit();
 }
