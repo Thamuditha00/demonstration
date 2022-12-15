@@ -29,7 +29,7 @@ a {
     height: 100%;
     /* take remaining width */
     justify-content: flex-start;
-    background-color: #cfcfcf;
+    background: #E8E8E8;
     position: absolute;
     left: 400px;
     width: calc(100% - 400px);

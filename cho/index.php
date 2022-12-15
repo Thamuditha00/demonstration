@@ -31,19 +31,23 @@ $result = mysqli_query($conn, $query) or die("Error querying database");
     <title>Community Center Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css"/>
+    <link rel="stylesheet" href="sidebar.css">
 
 </head>
 
 <body>
 <div class="container">
-
-    <div class="sidenav">
-        <img class="logo" src="logo.png">
-        <a href="#">Users</a>
-        <a href="index.php" class="active">Community Center</a>
-        <a href="#">Complaints</a>
-        <a href="logout.php"> Logout </a>
-    </div>
+    <?php
+    include 'sidebar.php';
+    ?>
+<!--    <div class="sidenav">-->
+<!--        <img class="logo" src="logo.png">-->
+<!--        <a href="#">Users</a>-->
+<!--        <a href="index.php" class="active">Community Center</a>-->
+<!--        <a href="#">Complaints</a>-->
+<!--        <a href="logout.php"> Logout </a>-->
+<!--    </div>-->
 
     <div class="main">
         <div class="profile-box">

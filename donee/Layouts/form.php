@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/form.css" />
+<link rel="stylesheet" href="css/form.css"/>
 
 <div class="form">
     <h1>Create a Request</h1>
@@ -10,7 +10,8 @@
             <?php
             while ($row = mysqli_fetch_array($result)) {
                 ?>
-                <option value="<?php echo $row['subcategory'] ?>"> <?php echo $row['subcategory'] ?> </option>
+                <option value="<?php echo $row['subcategory'] ?>"> <?php echo $row['category'] ?>
+                    - <?php echo $row['subcategory'] ?></option>
                 <?php
             }
             ?>
@@ -29,9 +30,9 @@
         <label for="urgency"> Urgency </label>
         <select name="urgency" id="urgency" required>
             <option value="">Select Urgency</option>
-            <option value="urgent">Urgent</option>
-            <option value="immediate">Immediate</option>
-            <option value="free">Free</option>
+            <option value="1 Week">1 Week</option>
+            <option value="2 Weeks">2 Weeks</option>
+            <option value="1 Month">1 Month</option>
         </select>
         <label for="notes"> Notes </label>
         <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Notes"></textarea>

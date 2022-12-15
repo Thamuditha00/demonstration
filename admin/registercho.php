@@ -89,7 +89,7 @@ if (isset($_POST['register-cho'])) {
                 <form action="" method="POST" id="registerCHO">
                     <label class="district" for="District">District</label>
                     <select name="District" id="district" onchange="validateDistrict()" required>
-                        <option value="Ampara">Ampara</option>
+                        <option value="">Select District</option><option value="Ampara">Ampara</option>
                         <option value="Anuradhapura">Anuradhapura</option>
                         <option value="Badulla">Badulla</option>
                         <option value="Batticaloa">Batticaloa</option>
