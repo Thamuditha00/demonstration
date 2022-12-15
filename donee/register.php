@@ -45,7 +45,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 ?>
 
-<form method="post" action="" id="registerDonee" onsubmit="isValidated()">
+<form method="post" action="" id="registerDonee" onsubmit="return isValidated()">
     <input type="text" name="fname" placeholder="first name" required> 
     <input type="text" name="lname" placeholder="last name" required>
     <input type="text" name="NIC" placeholder="NIC" onkeyup="validateNIC()" required>

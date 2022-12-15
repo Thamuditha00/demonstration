@@ -86,7 +86,7 @@ if (isset($_POST['register-cho'])) {
         <div class="form">
             <h1>Register CHO</h1>
             <div class="content">
-                <form action="" method="POST" id="registerCHO">
+                <form action="" method="POST" id="registerCHO" onsubmit="return isValidated()">
                     <label class="district" for="District">District</label>
                     <select name="District" id="district" onchange="validateDistrict()" required>
                         <option value="">Select District</option><option value="Ampara">Ampara</option>

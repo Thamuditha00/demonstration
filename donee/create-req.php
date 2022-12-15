@@ -16,8 +16,13 @@ if ($_SESSION['userType'] != 'donee' && !isset($_SESSION['username'])) {
 }
 // import only subcategory column from subcategory database for php
 
-$query = "SELECT * FROM subcategory";
+$query = "SELECT * FROM category";
 $result = mysqli_query($conn, $query) or die("Error querying database");
+
+$query2 = "SELECT * FROM subcategory";
+$result2 = mysqli_query($conn, $query2) or die("Error querying database");
+$subcategories = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+
 
 ?>
 
@@ -34,11 +39,24 @@ include 'layouts/sidebar.php';
 
 </div>
 
+<script src="./create_req.js"></script>
+
 <?php
+
+function getSubcategory() {
+
+    if(!empty($_POST['subcategorydryfood'])) {
+        return $_POST['subcategorydryfood'];
+    } else if(!empty($_POST['subcategoryclothes'])) {
+        return $_POST['subcategoryclothes'];
+    } else if(!empty($_POST['subcategorystationaries'])) {
+        return $_POST['subcategorystationaries'];
+    }
+}
 
 if (isset($_POST['create-req'])) {
     $username = $_SESSION['username'];
-    $item = $_POST['subcategory'];
+    $item = getSubcategory() ;
     $amount = $_POST['amount'];
     $unit = $_POST['unit'];
     $urgency = $_POST['urgency'];
